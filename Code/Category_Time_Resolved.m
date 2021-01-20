@@ -1,6 +1,6 @@
-function Location_Time_Resolved(steps,permutations,sbj)
-% Time-resolved EEG cross-decoding of object location across categories, in
-% each background condition separately. 
+function Category_Time_Resolved(steps,permutations,sbj)
+% Time-resolved EEG cross-decoding of object category across locations, in
+% each background condition separately.
 % Saves single subject's time-resolved RDM.
 % Requirement: libsvm toolbox has to be in the path.
 
@@ -17,7 +17,7 @@ function Location_Time_Resolved(steps,permutations,sbj)
 tic
 addpath('./HelperFunctions')
 savepath = '../Results/EEG/';
-filename = 'Location_Timecourse';
+filename = 'Category_Timecourse';
 
 % load data
 load(sprintf('../Data/EEG/s%.2d_EEG.mat',sbj));
@@ -57,8 +57,8 @@ for iperm = 1:permutations
     % multivariate noise normalization and whitening
     [white_data] = mvnn_whitening(binned_data,1:bins-1); clear binned_data
     
-    % now perform pairwise cross-decoding of all location pairs, across all
-    % combinations of categories and within each background condition
+    % now perform pairwise cross-decoding of all category pairs, across all
+    % combinations of locations and within each background condition
     
     for iBG = 1:bg
             
@@ -69,9 +69,9 @@ for iperm = 1:permutations
                         for catB = 1:categories
                             
                             trainA = find(DM.values(:,1)== catA & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
-                            trainB = find(DM.values(:,1)== catA & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
+                            trainB = find(DM.values(:,1)== catB & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
                             
-                            testA  = find(DM.values(:,1)== catB & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
+                            testA  = find(DM.values(:,1)== catA & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                             testB  = find(DM.values(:,1)== catB & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                             
                             traindataA = squeeze(white_data(trainA,:,:,:));
