@@ -25,7 +25,7 @@ if analysis==1 % location
     % cross-decoding results from the off-dialgonals
     RDM = permute(RDM,[ 3 4 1 2]);
     
-    % define upper and lower y-axis bounds
+    % define upper and lower y-axis bounds for stimulus onset plotting
     ylimlow = -10;
     ylimup  = 40;
     
@@ -36,13 +36,13 @@ else % category
     % dimensions of the results RDM are now:
     % 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x timepoints
     
-    % put location in the back
+    % put category in the back
     RDM = permute(RDM,[ 6 1 2 3 4 5 ]);
     
     % average across upper diagonal: category decoding
     RDM = squeeze(nanmean(RDM(:,:,:,:,triu(ones(4,4),1)>0),5));
     
-    % define upper and lower y-axis bounds
+    % define upper and lower y-axis bounds for stimulus onset plotting
     ylimlow = -10;
     ylimup  = 15;
 end
