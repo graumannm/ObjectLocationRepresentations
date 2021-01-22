@@ -1,2 +1,6 @@
 # ignore .mat files
 *.mat
+
+# ignore figures
+*.fig
+
