@@ -15,6 +15,8 @@ function Location_Time_Resolved(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
+
+% prepare paths & filenames
 addpath('./HelperFunctions')
 savepath = '../Results/EEG/';
 filename = 'Location_Timecourse';

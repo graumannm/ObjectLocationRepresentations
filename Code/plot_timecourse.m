@@ -47,8 +47,7 @@ else % category
     ylimup  = 15;
 end
 
-% extract and average upper and lower diagonal, which is location decoding
-% across categories, training and testing in both directions (hence upper and lower diagonal)
+% extract and average upper and lower diagonal, which is training and testing across categories (hence upper and lower diagonal)
 % also subtract 50 = chance level
 result = squeeze(nanmean(RDM(:,:,eye(4,4)==0),3))-50; clear RDM
 

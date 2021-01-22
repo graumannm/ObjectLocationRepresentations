@@ -1,7 +1,7 @@
 function Location_ROI(sbj)
 % Decoding of object location across categories in each background
 % condition separately and in each ROI.
-% Requirements: SPM and libsvm toolboxes have to be in the path
+% Requirement: libsvm toolbox has to be in the path
 
 % Duration: ~ 3 seconds
 
@@ -15,7 +15,6 @@ addpath('./HelperFunctions')
 savepath = ['../Results/fMRI/ROI/s' sprintf('%.2d',sbj)];
 filename = 'Location_ROI';
 ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO'};
-if ~isdir(savepath); mkdir(savepath); end
 
 % load design matrix for indexing of conditions in decoding loop
 load('DesignMatrix_48x3.mat');
@@ -25,7 +24,8 @@ runs       = 10; % number of fMRI runs
 bg         = 3;  % number of background conditions
 locations  = 4;
 categories = 4;
-result     = nan(length(ROIs),bg); % preallocate results matrix
+bins       = 2;
+result     = nan(length(ROIs),bg); % pre-allocate results matrix
 
 % loop through ROI's
 for iROI = 1:length(ROIs)
@@ -35,7 +35,7 @@ for iROI = 1:length(ROIs)
     
     % randomize and average in bins of 2 to decode on 5 pseudo-runs
     data = data(randperm(size(data,1)),:,:,:,:); % randomize runs
-    data = reshape(data,[2 (runs/2) bg locations categories size(data,5)]);
+    data = reshape(data,[bins (runs/bins) bg locations categories size(data,5)]);
     data = squeeze(nanmean(data,1)); % average trials in bins to get new pseudo-trials
     
     % loop through backgrounds
@@ -53,7 +53,7 @@ for iROI = 1:length(ROIs)
         
         for iRun = 1:size(data_bg,1)
             
-            % leave-on-run-out cross-validation
+            % leave-one-run-out cross-validation
             iTrainRun = find([1:size(data_bg,1)]~=iRun);  % index to runs for training (all except one)
             iTestRun  = iRun;                          % index to run for testing (the one left out)
             
@@ -91,8 +91,8 @@ for iROI = 1:length(ROIs)
         % average across upper diagonal, which is location decoding
         RDM = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3)); % cat x cat
         
-        % extract and average upper and lower diagonal, which is training and testing in across categories (hence upper and lower diagonal)
-        % also subtract 50 = chance level
+        % extract and average upper and lower diagonal, which is training and testing 
+        % across categories (hence upper and lower diagonal). Also subtract 50 = chance level
         result(iROI,iBG) = mean(RDM(eye(4,4)==0))-50;
         
         clear RDM data_bg

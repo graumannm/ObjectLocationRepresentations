@@ -8,7 +8,7 @@ function Location_Time_Generalization(steps,permutations,sbj)
 
 % Duration:
 % 5 permutations downsampled to 10 ms resolution takes ~4 minutes
-% 100 permutations take downsampled to 10 ms take ~85 minutes
+% 100 permutations downsampled to 10 ms takes ~85 minutes
 
 % Input:
 %       steps: time steps to analyze, integer. 1= 1 ms resolution. Use steps=10 to
