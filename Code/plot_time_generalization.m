@@ -2,7 +2,7 @@ function plot_time_generalization(sbj,task)
 
 %% extract location or category information from RDM
 
-if task ==1
+if task ==1 % location
     
     % load results RDM
     load(sprintf('./Results/EEG/s%.2d_Location_TimeGeneralization.mat',sbj));
@@ -19,6 +19,10 @@ if task ==1
     % cross-decoding results from the off-dialgonals
     RDM = permute(RDM,[ 3 4 1 2]);
     
+    name = 'Location';
+    ylimlow = -9;
+    ylimup  = 17;
+    
 else % category
     
     % load results RDM
@@ -31,6 +35,10 @@ else % category
     % average across upper diagonal: category decoding
     RDM = squeeze(nanmean(RDM(:,:,:,:,triu(ones(4,4),1)>0),5));
     % now time x time x loc x loc
+    
+    name = 'Category';
+    ylimlow = -9;
+    ylimup  = 9;
     
 end
 
@@ -53,12 +61,13 @@ hold on
 axis square;
 axis xy;
 h=colorbar
-% caxis([ylimdown ylimup])
 set(0,'DefaultAxesFontName', 'Candara')
 set(0,'DefaultTextFontname', 'Candara')
 set(0,'DefaultAxesFontSize',25)
 set(0,'DefaultTextFontSize',25)
 colordef white
 set(gcf,'Color','w')
+caxis([ylimlow ylimup])
 xlabel('Test Time: High Clutter');
 ylabel('Train Time: No Background');
+title(name)
