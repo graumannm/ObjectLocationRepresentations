@@ -2,7 +2,6 @@ function Category_Time_Resolved(steps,permutations,sbj)
 % Time-resolved EEG cross-decoding of object category across locations, in
 % each background condition separately.
 % Saves single subject's time-resolved RDM.
-% Requirement: libsvm toolbox has to be in the path.
 
 % Duration:
 % 5 permutations downsampled to 10 ms resolution takes ~37 seconds
@@ -15,12 +14,13 @@ function Category_Time_Resolved(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
-addpath('./HelperFunctions')
-savepath = '../Results/EEG/';
+addpath('Code/HelperFunctions');
+addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = './Results/EEG/';
 filename = 'Category_Timecourse';
 
 % load data
-load(sprintf('../Data/EEG/s%.2d_EEG.mat',sbj));
+load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
 timewindow = 1:steps:length(timepoints);

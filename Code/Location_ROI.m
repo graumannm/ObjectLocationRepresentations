@@ -1,7 +1,6 @@
 function Location_ROI(sbj)
 % Decoding of object location across categories in each background
 % condition separately and in each ROI.
-% Requirement: libsvm toolbox has to be in the path
 
 % Duration: ~ 3 seconds
 
@@ -11,8 +10,9 @@ function Location_ROI(sbj)
 tic
 
 % prepare paths & filenames
-addpath('./HelperFunctions')
-savepath = ['../Results/fMRI/ROI/s' sprintf('%.2d',sbj)];
+addpath('Code/HelperFunctions');
+addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = ['./Results/fMRI/ROI/s' sprintf('%.2d',sbj)];
 filename = 'Location_ROI';
 ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO'};
 
@@ -31,7 +31,7 @@ result     = nan(length(ROIs),bg); % pre-allocate results matrix
 for iROI = 1:length(ROIs)
     
     % load data
-    load(sprintf(['../Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
+    load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     
     % randomize and average in bins of 2 to decode on 5 pseudo-runs
     data = data(randperm(size(data,1)),:,:,:,:); % randomize runs

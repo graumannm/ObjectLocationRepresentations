@@ -1,4 +1,4 @@
-function plot_timecourse(sbj,analysis)
+function plot_timecourse(sbj,task)
 % Extract the timecourse of location across category (1) or category across
 % location (2) for each individual background condition from the results RDM and plot the result.
 
@@ -8,10 +8,10 @@ function plot_timecourse(sbj,analysis)
 
 %% extract location or category information from RDM
 
-if analysis==1 % location
+if task==1 % location
     
     % load results RDM
-    load(sprintf('../Results/EEG/s%.2d_Location_Timecourse.mat',sbj));
+    load(sprintf('./Results/EEG/s%.2d_Location_Timecourse.mat',sbj));
     % dimensions of the results RDM are now:
     % 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x timepoints
     
@@ -32,7 +32,7 @@ if analysis==1 % location
 else % category
     
     % load results RDM
-    load(sprintf('../Results/EEG/s%.2d_Category_Timecourse.mat',sbj));
+    load(sprintf('./Results/EEG/s%.2d_Category_Timecourse.mat',sbj));
     % dimensions of the results RDM are now:
     % 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x timepoints
     

@@ -1,20 +1,20 @@
-function plot_ROI(sbj,analysis)
+function plot_ROI(sbj,task)
 % plotting of ROI results either for decoding of object location across
-% categories (analysis==1) or vice versa (analysis==2), within each
+% categories (task==1) or vice versa (task==2), within each
 % background condition separately.
 
 % Input:
 %   sbj: subject's number, integer
 %   analysis: integer, 1=location, 2=category
 
-if analysis == 1
+if task == 1
     filename = 'Location';
 else
     filename = 'Category';
 end
 
 % load results RDM
-load(sprintf(['../Results/fMRI/ROI/s%.2d_' filename '_ROI.mat'],sbj));
+load(sprintf(['./Results/fMRI/ROI/s%.2d_' filename '_ROI.mat'],sbj));
 ROI_name  = {'V1' 'V2' 'V3' 'V4' 'LO'};
 
 % flatten result into vector, sorted by ROI

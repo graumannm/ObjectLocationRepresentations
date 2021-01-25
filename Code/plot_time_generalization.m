@@ -1,11 +1,11 @@
-function plot_time_generalization(sbj,analysis)
+function plot_time_generalization(sbj,task)
 
 %% extract location or category information from RDM
 
-if analysis ==1
+if task ==1
     
     % load results RDM
-    load(sprintf('../Results/EEG/s%.2d_Location_TimeGeneralization.mat',sbj));
+    load(sprintf('./Results/EEG/s%.2d_Location_TimeGeneralization.mat',sbj));
     
     % put location in the back
     RDM = permute(RDM,[3 4 5 6 1 2 ]);
@@ -22,7 +22,7 @@ if analysis ==1
 else % category
     
     % load results RDM
-    load(sprintf('../Results/EEG/s%.2d_Category_TimeGeneralization.mat',sbj));
+    load(sprintf('./Results/EEG/s%.2d_Category_TimeGeneralization.mat',sbj));
     
     % put category in the back
     RDM = permute(RDM,[5 6 1 2 3 4 ]);

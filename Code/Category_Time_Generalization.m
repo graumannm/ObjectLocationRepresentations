@@ -4,7 +4,6 @@ function Category_Time_Generalization(steps,permutations,sbj)
 % all timepoints in the no clutter and test on all timepoints in the high
 % clutter condition.
 % Saves single subject's time-time RDM.
-% Requirement: libsvm toolbox has to be in the path.
 
 % Duration:
 % 5 permutations downsampled to 10 ms resolution takes ~4 minutes
@@ -17,12 +16,13 @@ function Category_Time_Generalization(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
-addpath('./HelperFunctions')
-savepath = '../Results/EEG/';
+addpath('Code/HelperFunctions');
+addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = './Results/EEG/';
 filename = 'Category_TimeGeneralization';
 
 % load data
-load(sprintf('../Data/EEG/s%.2d_EEG.mat',sbj));
+load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
 time_end   = find(timepoints==600); % like in paper, we analyze up until 600 ms post-stimulus to save time and memory
