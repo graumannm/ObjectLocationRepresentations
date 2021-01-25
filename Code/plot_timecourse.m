@@ -92,7 +92,7 @@ hold on
 plot(timepoints(timewindow),0*ones(length(timewindow),1),'k--','linewidth',3) 
 
 % legend
-L = legend({'No Clutter','Low Clutter','High Clutter'},'AutoUpdate','off')
+L = legend({'No Clutter','Low Clutter','High Clutter'})
 set(L,'box','off');
 
 ylabel('Classification Accuracy - Chance (%)');
