@@ -11,6 +11,8 @@ addpath('Results');
 steps        = 10; % downsample EEG data to 10 ms for speed. Set steps=1 for full 1 ms temporal resolution.
 permutations = 5; % 5 permutations for speed. This gives a close approximation to the result with full 100 permutations (used in paper).
 
+%% Durations
+
 % Durations time-resolved analyses:
 % 5 permutations downsampled to 10 ms resolution takes ~37 seconds (fast parameters).
 % 100 permutations with 1 ms resulution takes ~2 hours (original parameters).
