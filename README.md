@@ -1,4 +1,4 @@
-# The neural dynamics of object location representations
+# Object Location Representations
 
 
 
