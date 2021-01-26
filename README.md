@@ -1,4 +1,4 @@
-# The spatiotemporal neural dynamics of object location representations in the human brain
+# The neural dynamics of object location representations
 
 
 
