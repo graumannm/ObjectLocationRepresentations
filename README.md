@@ -44,6 +44,9 @@ Both fast and original version downsample the time points to a 10 ms resolution 
 
 ~3 seconds
 
+4) Searchlight classification:
+~ 22 hours
+
 ## Figures
 
 The folder Figures/ contains the results figures for running each of the above analyses for the given subjects with the original parameters used in the manuscript. Please be aware that single subject results can differ slightly from time to time because of the random assignment of trials to training and testing bins.
