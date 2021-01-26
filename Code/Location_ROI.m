@@ -19,7 +19,7 @@ ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO'};
 % load design matrix for indexing of conditions in decoding loop
 load('DesignMatrix_48x3.mat');
 
-% define decoding parameters
+% define classification parameters
 runs       = 10; % number of fMRI runs
 bg         = 3;  % number of background conditions
 locations  = 4;
