@@ -94,3 +94,4 @@ lims=ylim;
 ylim([lims(1) lims(2)+10]) % add space for legend 
 xlim([0.2 18]); % make x-axis wider so all bars are visible
 set(gca,'ticklength',2*get(gca,'ticklength'))
+title(filename)

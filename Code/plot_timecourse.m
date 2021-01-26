@@ -28,6 +28,7 @@ if task==1 % location
     % define upper and lower y-axis bounds for stimulus onset plotting
     ylimlow = -10;
     ylimup  = 40;
+    name = 'Location';
     
 else % category
     
@@ -45,6 +46,7 @@ else % category
     % define upper and lower y-axis bounds for stimulus onset plotting
     ylimlow = -10;
     ylimup  = 15;
+    name = 'Category';
 end
 
 % extract and average upper and lower diagonal, which is training and testing across categories (hence upper and lower diagonal)
@@ -97,4 +99,5 @@ set(L,'box','off');
 
 ylabel('Classification Accuracy - Chance (%)');
 xlabel('Time (ms)');
+title(name)
 
