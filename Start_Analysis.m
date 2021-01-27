@@ -2,9 +2,9 @@
 
 clear
 clc
-addpath('Code');
-addpath('Data');
-addpath('Results');
+addpath(genpath('Code'));
+addpath(genpath('Data'));
+addpath(genpath('Results'));
 
 %% set parameters for EEG time-resolved and time-generalization analysis
 
