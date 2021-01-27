@@ -1,4 +1,5 @@
 function Category_Time_Generalization(steps,permutations,sbj)
+% Analysis corresponding to Fig. 4f.
 % Time-generalization analysis of object category across locations, background and time.
 % Additionally to cross-decoding across locations, we train on
 % all timepoints in the no clutter and test on all timepoints in the high

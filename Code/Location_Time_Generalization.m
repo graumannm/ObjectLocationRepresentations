@@ -1,4 +1,5 @@
 function Location_Time_Generalization(steps,permutations,sbj)
+% Analysis corresponding to Fig. 3d.
 % Time-generalization analysis of object location across categories, background and time.
 % Additionally to cross-decoding across categories, we train on
 % all timepoints in the no clutter and test on all timepoints in the high

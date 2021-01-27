@@ -1,4 +1,5 @@
 function Category_Time_Resolved(steps,permutations,sbj)
+% Analysis corresponding to Fig. 4c.
 % Time-resolved EEG cross-decoding of object category across locations, in
 % each background condition separately.
 % Saves single subject's time-resolved RDM.

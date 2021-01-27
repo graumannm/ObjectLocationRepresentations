@@ -1,4 +1,5 @@
 function Location_Time_Resolved(steps,permutations,sbj)
+% Analysis corresponding to Fig. 3a.
 % Time-resolved EEG cross-decoding of object location across categories, in
 % each background condition separately. 
 % Saves single subject's time-resolved RDM.

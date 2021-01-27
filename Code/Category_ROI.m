@@ -1,5 +1,6 @@
 function Category_ROI(sbj)
-% Decoding of object category across locations in each background
+% Analysis corresponding to Fig. 4b.
+% Classification of object category across locations in each background
 % condition separately and in each ROI.
 
 % Duration: ~ 3 seconds

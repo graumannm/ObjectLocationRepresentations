@@ -1,5 +1,6 @@
 function Location_ROI(sbj)
-% Decoding of object location across categories in each background
+% Analysis corresponding to Fig. 2d.
+% Classification of object location across categories in each background
 % condition separately and in each ROI.
 
 % Duration: ~ 3 seconds
