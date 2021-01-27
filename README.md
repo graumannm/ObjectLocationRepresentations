@@ -49,10 +49,10 @@ Both fast and original version downsample the time points to a 10 ms resolution 
 
 The folder Figures/ contains the results figures for running each of the above analyses for the given subjects with the original parameters used in the manuscript for the single demo subjects. Please be aware that single subject results can differ slightly from time to time because of the random assignment of trials to training and testing bins.
 
-The following single subject results figures in this demo correspond to the following group-averaged figures in the manuscript:
+The following single subject results figures in this demo correspond to the following group-averaged figures in the manuscript: \
 Category_ROI.fig --> Fig. 4b \
-Category_Timecourse.fig --> Fig. 4c
-Category_TimeGeneralization.fig --> Fig. 4f
-Location_ROI.fig --> Fig. 2d
-Location_Timecourse.fig --> Fig. 3a
-Location_TimeGeneralization.fig --> Fig. 3d
+Category_Timecourse.fig --> Fig. 4c \
+Category_TimeGeneralization.fig --> Fig. 4f \
+Location_ROI.fig --> Fig. 2d \
+Location_Timecourse.fig --> Fig. 3a \ 
+Location_TimeGeneralization.fig --> Fig. 3d \
