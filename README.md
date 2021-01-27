@@ -6,17 +6,17 @@ This repository contains the analysis code that goes with the manuscript "The sp
 
 All analyses were conducted using Matlab 2018b and were also tested on Matlab2016a and Matlab2020b. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Big Sur version 11.1, Windows 10.
 
-The code depends on functions from the libsvm-3.11 toolbox, which are provided in the folder /Code/LibsvmFunctions, thus no installation of the toolbox is required.
+
 
 ## Requirements
 
- - Matlab software
+- Matlab software
 - The code depends on functions from the libsvm-3.11 toolbox, which are provided in the folder /Code/LibsvmFunctions, thus no installation of the toolbox is required.
 
 
 ## Start analysis and plot result
 
-To run the demo, simply run the script Start_Analysis.m in the main folder and follow the prompts in the command window. You will be given the option to run 1) the EEG time-resolved classification 2) the EEG time-generalization or 3) the ROI classification, each respectively for the classification of object location across categories or vice versa.
+To run the demo, simply run the script Start_Analysis.m in the main folder and follow the prompts in the command window. You will be given the option to run 1) the EEG time-resolved classification 2) the EEG time-generalization or 3) the ROI classification, respectively for the classification of object location across categories or vice versa.
 
 
 ## Durations
