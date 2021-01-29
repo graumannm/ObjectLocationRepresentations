@@ -21,17 +21,19 @@ ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO'};
 load('DesignMatrix_48x3.mat');
 
 % define classification parameters
-runs       = 10; % number of fMRI runs
-bg         = 3;  % number of background conditions
-locations  = 4;
-categories = 4;
-bins       = 2;
-result     = nan(length(ROIs),bg); % pre-allocate results matrix
+runs         = 10; % number of fMRI runs
+bg           = 3;  % number of background conditions
+locations    = 4;
+categories   = 4;
+bins         = 2;
+result       = nan(length(ROIs),bg); % pre-allocate results matrix
+chance_level = 50;
 
 % loop through ROI's
 for iROI = 1:length(ROIs)
     
-    % load data
+    % load data. Dimensions: 10 runs x 3 backgrounds x 4 locations x 4
+    % categories x 400 voxels
     load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     
     % randomize and average in bins of 2 to decode on 5 pseudo-runs
@@ -94,7 +96,7 @@ for iROI = 1:length(ROIs)
         
         % extract and average upper and lower diagonal, which is training and testing 
         % across categories (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
-        result(iROI,iBG) = mean(RDM(eye(4,4)==0))-50;
+        result(iROI,iBG) = mean(RDM(eye(4,4)==0))-chance_level;
         
         clear RDM data_bg
         

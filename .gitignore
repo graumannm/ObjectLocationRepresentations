@@ -4,5 +4,6 @@
 # ignore figures
 *.fig
 
-# ignore bash scripts
+# ignore bash and output files
 *.sh
+*.out

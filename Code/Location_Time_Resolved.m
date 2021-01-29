@@ -22,7 +22,8 @@ addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 savepath = './Results/EEG/';
 filename = 'Location_Timecourse';
 
-% load data
+% load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
+% time points
 load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
