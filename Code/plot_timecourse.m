@@ -49,8 +49,8 @@ else % category
     name = 'Category';
 end
 
-% extract and average upper and lower diagonal, which is training and testing across categories (hence upper and lower diagonal)
-% also subtract 50 = chance level
+% extract and average upper and lower diagonal, which is training and testing across categories 
+% (in both directions, hence upper and lower diagonal) also subtract 50 = chance level
 result = squeeze(nanmean(RDM(:,:,eye(4,4)==0),3))-50; clear RDM
 
 % now we can extract the diagonals from the background (3x3), because we

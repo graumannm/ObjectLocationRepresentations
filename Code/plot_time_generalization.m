@@ -42,7 +42,8 @@ else % category
     
 end
 
-% extract cross-decoding from off-diagonals
+% extract and average upper and lower diagonal, which is training and testing across categories 
+% (in both directions, hence upper and lower diagonal) also subtract 50 = chance level
 result = squeeze(nanmean(RDM(:,:,eye(4,4)==0),3))-50;
 
 %% now plot the resulting time-generalization matrix
