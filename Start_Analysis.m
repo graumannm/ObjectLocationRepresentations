@@ -77,3 +77,40 @@ else % category analyses
     end
     
 end
+
+%% Optional: Searchlight analysis (~16 hours, 2 GB memory)
+% You also have the option to run the searchlight classification analysis
+% of object location across categories. This analysis takes ~16 hours per
+% background condition. Because of the long duration, the results
+% for this analysis are already saved in ./Results/fMRI/Searchlight/
+
+% to run this analysis uncomment the following lines:
+
+% BG = 1; % 1= no, 2= low, 3= high clutter
+% Location_Searchlight(1,BG); 
+
+% to plot the (existing) result uncomment and run this line:
+
+% plot_searchlight(1,BG);
+
+% These results figures are already saved in ./Figures as
+% Location_Searchlight_NoClutter.fig
+% Location_Searchlight_LowClutter.fig
+% Location_Searchlight_HighClutter.fig
+
+%% Optional: DNN analysis (~40 minutes with 5 permutations)
+% You also have the option to run the DNN classification analysis
+% of object location across categories. This analysis takes ~10 minutes per layer with 5 permutations. 
+% Because of the long duration, the results
+% for this analysis are already saved in ./Results/CORnet-S/
+
+% to run this analysis uncomment the following lines:
+
+% permutations = 5;
+% for ilayer = 1:4 % 1=V1,2=V2,3=V4,4=IT
+%     Location_DNN(permutations,ilayer);
+% end
+% plot_DNN;
+
+% The results figure is saved in ./Figures as
+% Location_CORnet-S.fig
