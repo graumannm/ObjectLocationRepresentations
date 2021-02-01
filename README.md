@@ -6,7 +6,7 @@ This repository contains the analysis code that goes with the manuscript "The sp
 
 All analyses were conducted using Matlab 2018b and were also tested on Matlab2016a, Matlab2017b and Matlab2020b. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Big Sur version 11.1, Windows 10.
 
-The data, results and figure folder can be found [here](https://osf.io/7zswn/?view_only=db183dde8f4b406aaba5dfc0dd0ae67d) for a single EEG and fMRI demo subject.
+The data, results and figure folders can be found [here](https://osf.io/7zswn/?view_only=db183dde8f4b406aaba5dfc0dd0ae67d) for a single EEG and fMRI demo subject.
 
 
 ## Requirements
