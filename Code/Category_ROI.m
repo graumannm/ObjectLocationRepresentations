@@ -92,7 +92,7 @@ for iROI = 1:length(ROIs)
         RDM = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3));
         
         % extract and average upper and lower diagonal, which is training and testing 
-        % across categories (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
+        % across locations (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
         result(iROI,iBG) = mean(RDM(eye(4,4)==0))-chance_level;
         
         clear RDM data_bg
