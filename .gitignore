@@ -7,3 +7,7 @@
 # ignore bash and output files
 *.sh
 *.out
+
+# ignore fMRI image files
+*.img
+*.hdr
