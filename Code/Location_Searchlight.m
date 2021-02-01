@@ -3,7 +3,8 @@ function Location_Searchlight(sbj,BG)
 % condition separately.
 % Requirement: SPM has to be in the path.
 
-% Duration: ~ 22 hours
+% Duration: ~ 16 hours on high-performance computing cluster
+% Memory: ~2 GB
 
 % Input:
 %       sbj = subject number, integer
@@ -117,7 +118,7 @@ SL = permute(results_img_RDM,[1 2 3 6 7 4 5]);
 % average across upper diagonal, which is decoding of location
 SL = squeeze(nanmean(SL(:,:,:,:,:,triu(ones(4,4),1)>0),6));
 
-% take off-diagonals for cross decoding across categories and subtract
+% take off-diagonals for cross-decoding across categories and subtract
 % chance
 SL = squeeze(nanmean(SL(:,:,:,eye(4,4)==0),4))-chance_level;
 
