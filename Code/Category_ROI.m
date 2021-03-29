@@ -1,4 +1,4 @@
-function Category_ROI(sbj)
+function [result] = Category_ROI(sbj)
 % Analysis corresponding to Fig. 4b.
 % Classification of object category across locations in each background
 % condition separately and in each ROI.
@@ -8,14 +8,13 @@ function Category_ROI(sbj)
 % Input:
 %       sbj = subject number, integer
 
-tic
-
 % prepare paths & filenames
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
-savepath = ['./Results/fMRI/ROI/s' sprintf('%.2d',sbj)];
-filename = 'Category_ROI';
-ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO'};
+savepath = ['./Results/fMRI/ROI/s' sprintf('%.2d',sbj) '/'];
+if ~isdir(savepath); mkdir(savepath); end
+filename = ['s' sprintf('%.2d',sbj) '_Category_ROI'];
+ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO' 'IPS0' 'IPS1' 'IPS2' 'SPL'};
 
 % load design matrix for indexing of conditions in decoding loop
 load('DesignMatrix_48x3.mat');
@@ -102,10 +101,7 @@ for iROI = 1:length(ROIs)
 end
 
 % save
-save([savepath '_' filename  '.mat'],'result');
-
-toc
-
+save([savepath filename  '.mat'],'result');
 
 
 

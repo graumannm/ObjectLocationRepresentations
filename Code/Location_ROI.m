@@ -1,4 +1,4 @@
-function Location_ROI(sbj)
+function [result] = Location_ROI(sbj)
 % Analysis corresponding to Fig. 2d.
 % Classification of object location across categories in each background
 % condition separately and in each ROI.
@@ -7,8 +7,6 @@ function Location_ROI(sbj)
 
 % Input:
 %       sbj = subject number, integer
-
-tic
 
 % prepare paths & filenames
 addpath('Code/HelperFunctions');
@@ -107,8 +105,6 @@ end
 
 % save
 save([savepath filename  '.mat'],'result');
-
-toc
 
 
 
