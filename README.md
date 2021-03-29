@@ -13,7 +13,7 @@ The fMRI, EEG and DNN data as well as the experimental stimuli can be downloaded
 
 - Matlab software
 - The code depends on functions from the libsvm-3.11 toolbox, but these are provided in the folder /Code/LibsvmFunctions, thus no installation of the toolbox is required.
-- the searchlight analysis requires some functions from the SPM toolbox which can be downloaded [here] (https://www.fil.ion.ucl.ac.uk/spm/software/spm12/)
+- the searchlight analysis requires some functions from the SPM toolbox which can be downloaded [here](https://www.fil.ion.ucl.ac.uk/spm/software/spm12/)
 
 ## Start analysis and plot result
 
