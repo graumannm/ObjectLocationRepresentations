@@ -17,7 +17,7 @@ The fMRI, EEG and DNN data as well as the experimental stimuli can be downloaded
 
 ## Start analysis and plot result
 
-To run the demo, simply run the script Start_Analysis.m in the main folder and follow the prompts in the command window. You will be given the option to run 1) the ROI classification 2) the EEG time-resolved classification or 3) the EEG time-generalization, respectively for the classification of object location across categories (1) or vice versa (2).
+To run the demo, simply run the script Start_Analysis.m in the main folder and follow the prompts in the command window. You will be given the option to run 1) the ROI classification (whole sample) 2) the EEG time-resolved classification (demo subjet) or 3) the EEG time-generalization (demo subjet), respectively for the classification of object location across categories (1) or vice versa (2).
 
 
 ## Durations
@@ -51,7 +51,7 @@ Both fast and original version downsample the time points to a 10 ms resolution 
 
 Please be aware that results can differ slightly from time to time because of the random assignment of trials to training and testing bins.
 
-The following single subject or group averaged results figures in this demo correspond to the following group-averaged figures in the manuscript: \
+The following single subject or group averaged result figures in this demo correspond to the following group-averaged figures in the manuscript: \
 Category_ROI.fig --> Fig. 4B \
 Category_Timecourse.fig --> Fig. 4C \
 Category_TimeGeneralization.fig --> Fig. 4F \
