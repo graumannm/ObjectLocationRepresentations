@@ -1,4 +1,5 @@
 function Location_Searchlight(sbj,BG)
+% Analysis corresponding to Fig. 2d.
 % Whole brain searchlight classsification of object location across categories in each background
 % condition separately.
 % Requirement: SPM has to be in the path.

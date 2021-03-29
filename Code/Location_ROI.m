@@ -1,5 +1,5 @@
 function [result] = Location_ROI(sbj)
-% Analysis corresponding to Fig. 2d.
+% Analysis corresponding to Fig. 2c.
 % Classification of object location across categories in each background
 % condition separately and in each ROI.
 
