@@ -1,25 +1,22 @@
-function plot_ROI(sbj,task)
+function plot_ROI(myData,task)
 % plotting of ROI results either for decoding of object location across
 % categories (task==1) or vice versa (task==2), within each
 % background condition separately.
 
 % Input:
-%   sbj: subject's number, integer
-%   analysis: integer, 1=location, 2=category
+%   myData: decoding results. Dimensions: subjects x [3 backgrounds*ROIs]
+%   task: integer, 1=location, 2=category
 
 if task == 1
     filename = 'Location';
+    ylims = [-1 25];
 else
     filename = 'Category';
+    ylims = [-1.5 7];
 end
 
-% load results RDM
-load(sprintf(['./Results/fMRI/ROI/s%.2d_' filename '_ROI.mat'],sbj));
-ROI_name  = {'V1' 'V2' 'V3' 'V4' 'LO'};
-
-% flatten result into vector, sorted by ROI
-myData = result';
-myData = myData(:);
+BG    = 3;
+nrois = (size(myData,2))/BG;
 
 %% figure setup
 hf = figure('position',[1,1,1000, 750], 'unit','pixel');
@@ -48,50 +45,57 @@ h=bar(0,0);
 set(h,'facecolor',c3);
 set(h,'linewidth',3);
 
-% x axis position: wide distance=1.1; narrow=0.9
-% xb = [1.05,1.95,  3.05,3.95  ,5.05,5.95  ,7.05,7.95];
-xb = nan(3,5); % vector containing bar positions
-xb(1,1)=1.05;
-for j = 2:15
+% means
+m = mean(myData);
+
+xb       = nan(BG,nrois); % vector containing bar positions
+xb(1,1)  = 1.05;
+newsteps = (BG+1):BG:length(m)-2;
+
+for j = 2:length(m)
     
-    if ismember(j,[4,7,10,13]) % big step before new ROI
+    if ismember(j,newsteps) % big step before new ROI
         xb(j)=xb(j-1)+1.6;
     else
         xb(j)=xb(j-1)+0.85; % small step between bgs
     end
     
 end
-xb = xb(:); % straighten bar positions
+xb  = xb(:); % straighten bar positions
+se  = std(myData)/sqrt(size(myData,1));
+no  = [1:3:length(m)-2];
+low = [2:3:length(m)-1];
 
-% plot stuff
-for i=1:size(myData,1) % same as length of m
-
-    % plot the bar
-    h = bar(xb(i),myData(i)); % xb says where m(i) what
-    if ismember(i,[1,4,7,10,13]) % nobg
+% plot bars
+for i=1:size(myData,2) 
+    
+    h = bar(xb(i),m(i)); 
+    if ismember(i,no) % nobg
         set(h,'facecolor',c1);
-    elseif ismember(i,[2,5,8,11,14]) % low clutter
+    elseif ismember(i,low) % low clutter
         set(h,'facecolor',c2);
     else
         set(h,'facecolor',c3); % high clutter
     end
     set(h,'linewidth',3);
     
+    hl = line([xb(i),xb(i)],[m(i)-se(i),m(i)+se(i)]);
+    set(hl,'linewidth',3);
+    set(hl,'color','k');
 end
 
 % legend
-L=legend({'No Background','Low Clutter','High Clutter'});
+L=legend({'No clutter','Low clutter','High clutter'});
 set(L,'box','off');
 
 % other plot properties
-ylabel('Classification Accuracy (%)');
+ylabel('Classification accuracy - chance level (%)');
 xlabel('ROI');
 set(gca,'linewidth',3);
-set(gca,'xtick',[xb([2,5,8,11,14],1)]); % where to put labels
-set(gca,'xticklabel',{'V1' 'V2' 'V3' 'V4' 'LOC'});
+set(gca,'xtick',[xb(low,1)]);
+set(gca,'xticklabel',{'V1' 'V2' 'V3' 'V4' 'LOC' 'IPS0' 'IPS1' 'IPS2' 'SPL'});
 axis tight
-lims=ylim;
-ylim([lims(1) lims(2)+10]) % add space for legend 
-xlim([0.2 18]); % make x-axis wider so all bars are visible
+ylim(ylims);
+xlim([0.2 length(m)+3]);
 set(gca,'ticklength',2*get(gca,'ticklength'))
 title(filename)
