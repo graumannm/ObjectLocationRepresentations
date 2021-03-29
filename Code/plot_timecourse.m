@@ -99,5 +99,5 @@ set(L,'box','off');
 
 ylabel('Classification Accuracy - Chance (%)');
 xlabel('Time (ms)');
-title(name)
+title([name ' subject ' num2str(sbj)])
 

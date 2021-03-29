@@ -71,4 +71,4 @@ set(gcf,'Color','w')
 caxis([ylimlow ylimup])
 xlabel('Test Time: High Clutter');
 ylabel('Train Time: No Background');
-title(name)
+title([name ' subject ' num2str(sbj)])
