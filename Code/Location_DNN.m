@@ -16,6 +16,7 @@ addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 name     = 'CORnet-S';
 savepath = ['./Results/' name filesep];
+if ~isdir(savepath); mkdir(savepath); end
 layers   = {'V1' 'V2' 'V4' 'IT'};
 filename = layers{ilayer};
 

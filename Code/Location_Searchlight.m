@@ -15,9 +15,10 @@ tic
 % prepare paths & filenames
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
-savepath              = ['./Results/fMRI/Searchlight/s' sprintf('%.2d',sbj)];
+savepath              = ['./Results/fMRI/Searchlight/s' sprintf('%.2d',sbj) '/'];
+if ~isdir(savepath); mkdir(savepath); end
 background_conditions = {'No','Low','High'};
-filename              = ['Location_SL_' background_conditions{BG} '_Clutter'];
+filename              = ['s' sprintf('%.2d',sbj) '_Location_SL_' background_conditions{BG} '_Clutter'];
 
 % load design matrix for indexing of conditions in decoding loop
 load('DesignMatrix_48x3.mat');
@@ -131,7 +132,7 @@ save([savepath '_' filename  '.mat'],'SL','-v7.3');
 results_hdr         = vol_hdr; % use previous header and adapt it
 results_hdr.descrip = 'location across category'; 
 results_hdr.private =   [];                               
-results_hdr.fname   = [savepath '_' filename  '.img']; 
+results_hdr.fname   = [savepath filename  '.img']; 
 spm_write_vol(results_hdr,SL);
 
 toc

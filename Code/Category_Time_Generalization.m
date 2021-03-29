@@ -20,6 +20,7 @@ tic
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 savepath = './Results/EEG/';
+if ~isdir(savepath); mkdir(savepath); end
 filename = 'Category_TimeGeneralization';
 
 % load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
