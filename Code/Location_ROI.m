@@ -103,10 +103,14 @@ for iROI = 1:length(ROIs)
         
     end
     clear data
+    
+    % save RDM for each background
+    RDM_BGs(iBG,:,:,:,:) = RDM;
+    
 end
 
 % save
-save([savepath filename  '.mat'],'result','RDM');
+save([savepath filename  '.mat'],'result','RDM_BGs');
 
 
 
