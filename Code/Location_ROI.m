@@ -33,10 +33,10 @@ for iROI = 1:length(ROIs)
     
     % load data. Dimensions: 10 runs x 3 backgrounds x 4 locations x 4
     % categories x 400 voxels
-%     load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
+    %     load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     load(sprintf(['/home/monikag/CATLOC/PrepareData4Release/checks/data_c/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     
-
+    
     % randomize and average in bins of 2 to decode on 5 pseudo-runs
     data = data(randperm(size(data,1)),:,:,:,:); % randomize runs
     data = reshape(data,[bins (runs/bins) bg locations categories size(data,5)]);
@@ -61,17 +61,17 @@ for iROI = 1:length(ROIs)
             iTrainRun = find([1:size(data_bg,1)]~=iRun);  % index to runs for training (all except one)
             iTestRun  = iRun;                          % index to run for testing (the one left out)
             
-            for LocationA = 1:locations 
+            for LocationA = 1:locations
                 for LocationB = 1:locations
                     
                     for CatA = 1:categories
                         for CatB = 1:categories
                             
                             data_train = [squeeze(data_bg(iTrainRun,LocationA,CatA,:));...
-                                          squeeze(data_bg(iTrainRun,LocationB,CatA,:))];
+                                squeeze(data_bg(iTrainRun,LocationB,CatA,:))];
                             
                             data_test  = [squeeze(data_bg(iTestRun,LocationA,CatB,:))';...
-                                          squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
+                                squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
                             
                             model = libsvmtrain(labels_train',data_train,'-s 0 -t 0 -q');
                             
@@ -95,17 +95,17 @@ for iROI = 1:length(ROIs)
         % average across upper diagonal, which is location decoding
         DA = squeeze(nanmean(DA(:,:,triu(ones(4,4),1)>0),3)); % cat x cat
         
-        % extract and average upper and lower diagonal, which is training and testing 
+        % extract and average upper and lower diagonal, which is training and testing
         % across categories (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
         result(iROI,iBG) = mean(DA(eye(4,4)==0))-chance_level;
         
         clear DA data_bg
         
+        % save RDM for each background and ROI
+        RDM_BGs(iROI,iBG,:,:,:,:) = RDM;
+        
     end
     clear data
-    
-    % save RDM for each background
-    RDM_BGs(iBG,:,:,:,:) = RDM;
     
 end
 
