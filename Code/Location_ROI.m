@@ -33,8 +33,10 @@ for iROI = 1:length(ROIs)
     
     % load data. Dimensions: 10 runs x 3 backgrounds x 4 locations x 4
     % categories x 400 voxels
-    load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
+%     load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
+    load(sprintf(['/home/monikag/CATLOC/PrepareData4Release/checks/data_c/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     
+
     % randomize and average in bins of 2 to decode on 5 pseudo-runs
     data = data(randperm(size(data,1)),:,:,:,:); % randomize runs
     data = reshape(data,[bins (runs/bins) bg locations categories size(data,5)]);
@@ -88,23 +90,23 @@ for iROI = 1:length(ROIs)
         RDM  = squeeze(nanmean(RDM,1)); % cat x cat x loc x loc
         
         % put location in the back
-        RDM = permute(RDM,[3 4 1 2]); % loc x loc x cat x cat
+        DA = permute(RDM,[3 4 1 2]); % loc x loc x cat x cat
         
         % average across upper diagonal, which is location decoding
-        RDM = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3)); % cat x cat
+        DA = squeeze(nanmean(DA(:,:,triu(ones(4,4),1)>0),3)); % cat x cat
         
         % extract and average upper and lower diagonal, which is training and testing 
         % across categories (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
-        result(iROI,iBG) = mean(RDM(eye(4,4)==0))-chance_level;
+        result(iROI,iBG) = mean(DA(eye(4,4)==0))-chance_level;
         
-        clear RDM data_bg
+        clear DA data_bg
         
     end
     clear data
 end
 
 % save
-save([savepath filename  '.mat'],'result');
+save([savepath filename  '.mat'],'result','RDM');
 
 
 
