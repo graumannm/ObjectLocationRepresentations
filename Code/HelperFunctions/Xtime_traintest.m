@@ -11,8 +11,8 @@ function [time_matrix] = Xtime_traintest(trainA,trainB,testA,testB,timewindow,la
  for iTime = 1:length(timewindow) % size of data
      
      test_data = [squeeze(testA(end,:,iTime)) ; squeeze(testB(end,:,iTime)) ];
-     [predicted_label, l_accuracy, decision_values] = libsvmpredict(labels_test, test_data, model); clear predicted_label decision_values
-     time_matrix(iTime) = [l_accuracy(1)];
+     [predicted_label, l_accuracy, decision_values] = libsvmpredict(labels_test, test_data, model);
+     time_matrix(iTime) = [l_accuracy(1)]; clear predicted_label l_accuracy decision_values
      
  end
     
