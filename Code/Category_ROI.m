@@ -32,7 +32,7 @@ chance_level = 50;
 for iROI = 1:length(ROIs)
     
     % load data. Dimensions: 10 runs x 3 backgrounds x 4 locations x 4
-    % categories x 400 voxels
+    % categories x 325 voxels
     load(sprintf(['./Data/fMRI/ROI/s%.2d/s%.2d_' ROIs{iROI} '.mat'],sbj,sbj));
     
     % randomize and average in bins of 2 to decode on 5 pseudo-runs

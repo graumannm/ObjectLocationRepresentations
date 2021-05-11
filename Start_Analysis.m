@@ -57,7 +57,7 @@ if task ==1 % location analyses
     if analysis==1 % ROI
         
         for isub = 1:subs
-            result       =  Location_ROI(isub);
+            result       = Location_ROI(isub);
             result       = result';
             ROIs(isub,:) = result(:); clear result
         end
