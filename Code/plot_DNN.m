@@ -48,7 +48,7 @@ xb = nan(length(myData)); % vector containing bar positions
 xb(1,1)=1.05;
 for j = 2:15
     
-    if ismember(j,[4,7,10,13]) % big step before new ROI
+    if ismember(j,[4,7,10,13]) % big step before new layer
         xb(j)=xb(j-1)+1.6;
     else
         xb(j)=xb(j-1)+0.85; % small step between background conditions
