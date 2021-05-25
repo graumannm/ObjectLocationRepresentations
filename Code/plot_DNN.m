@@ -7,7 +7,7 @@ layers   = {'V1' 'V2' 'V4' 'IT'};
 DNN      = 'CORnet-S';
 myData   = [];
 
-for ilayer=1:4
+for ilayer=1:length(layers)
     
     % load data
     load(['./Results/' DNN '/' layers{ilayer} '.mat'])
