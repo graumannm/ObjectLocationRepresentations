@@ -59,17 +59,17 @@ for iROI = 1:length(ROIs)
             iTrainRun = find([1:size(data_bg,1)]~=iRun); % index to runs for training (all except one)
             iTestRun  = iRun;                            % index to run for testing (the one left out)
             
-            for LocationA = 1:locations 
+            for LocationA = 1:locations
                 for LocationB = 1:locations
                     
                     for CatA = 1:categories
                         for CatB = 1:categories
                             
                             data_train = [squeeze(data_bg(iTrainRun,LocationA,CatA,:));...
-                                          squeeze(data_bg(iTrainRun,LocationA,CatB,:))];
+                                squeeze(data_bg(iTrainRun,LocationA,CatB,:))];
                             
                             data_test  = [squeeze(data_bg(iTestRun,LocationB,CatA,:))';...
-                                          squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
+                                squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
                             
                             model = libsvmtrain(labels_train',data_train,'-s 0 -t 0 -q');
                             
@@ -85,23 +85,26 @@ for iROI = 1:length(ROIs)
         end
         
         % average across runs
-        RDM  = squeeze(nanmean(RDM,1)); % cat x cat x loc x loc
+        RDM = squeeze(nanmean(RDM,1)); % cat x cat x loc x loc
         
         % average across upper diagonal, which is category decoding
-        RDM = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3));
+        DA = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3));
         
-        % extract and average upper and lower diagonal, which is training and testing 
+        % extract and average upper and lower diagonal, which is training and testing
         % across locations (in both directions, hence upper and lower diagonal). Also subtract 50 = chance level
-        result(iROI,iBG) = mean(RDM(eye(4,4)==0))-chance_level;
+        result(iROI,iBG) = mean(DA(eye(4,4)==0))-chance_level;
         
-        clear RDM data_bg
+        clear DA data_bg
+        
+        % save RDM for each background and ROI
+        RDM_BGs(iROI,iBG,:,:,:,:) = RDM;
         
     end
     clear data
 end
 
 % save
-save([savepath filename  '.mat'],'result');
+save([savepath filename  '.mat'],'result','RDM_BGs');
 
 
 
