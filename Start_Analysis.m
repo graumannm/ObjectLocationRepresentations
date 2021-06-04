@@ -43,9 +43,8 @@ end
 
 analysis=input('Which analysis would you like to run?\n Press \n 1 for ROI \n 2 for timecourse \n 3 for time-generalization \n');
 
-if analysis==1 % fMRI
-    sbj = 1;
-elseif analysis == 2 || analysis == 3 % EEG
+% pick example subject
+if analysis == 2 || analysis == 3 % EEG
     sbj = 25;
 else
     error('Please press 1=ROI,2=timecourse or 3=time-generalization.')
