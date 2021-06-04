@@ -30,7 +30,7 @@ load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 % define which time points to analyze
 timewindow = 1:steps:length(timepoints);
 
-% pick code for 1st and second half of experiment. In 1st half design was
+% forward to code for 1st and second half of experiment. In 1st half design was
 % 50 % no, 25% low and 25 % high clutter, but we only take 25% of no
 % clutter condition to keep all equal.
 % 2nd half was 1/3 of trials for no, low and high clutter.
