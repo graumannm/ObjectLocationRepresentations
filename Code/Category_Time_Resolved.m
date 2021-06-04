@@ -15,15 +15,15 @@ function Category_Time_Resolved(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
-addpath('Code/HelperFunctions');
-addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
-savepath = './Results/EEG/';
+addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/HelperFunctions');
+addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = '/home/monikag/CATLOC/ObjectLocationRepresentations/Results/EEG/';
 if ~isdir(savepath); mkdir(savepath); end
 filename = 'Category_Timecourse';
 
 % load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
 % time points
-load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
+load(sprintf('/home/monikag/CATLOC/ObjectLocationRepresentations/Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
 timewindow = 1:steps:length(timepoints);
