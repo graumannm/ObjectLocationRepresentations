@@ -1,4 +1,4 @@
-function Category_Time_Resolved(steps,permutations,sbj)
+function Category_Time_Resolved(steps,permutations,sbj,chunk)
 % Analysis corresponding to Fig. 4c.
 % Time-resolved EEG cross-decoding of object category across locations, in
 % each background condition separately.
@@ -19,7 +19,7 @@ addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/HelperFunctions
 addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/LibsvmFunctions'); % libsvm 3.1.1.
 savepath = '/home/monikag/CATLOC/ObjectLocationRepresentations/Results/EEG/';
 if ~isdir(savepath); mkdir(savepath); end
-filename = 'Category_Timecourse';
+filename = ['Category_Timecourse_' nu2str(chunk)];
 
 % load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
 % time points
