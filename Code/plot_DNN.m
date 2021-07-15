@@ -44,7 +44,7 @@ set(h,'facecolor',c3);
 set(h,'linewidth',3);
 
 
-xb = nan(length(myData)); % vector containing bar positions
+xb = nan(1,length(myData)); % vector containing bar positions
 xb(1,1)=1.05;
 for j = 2:15
     
