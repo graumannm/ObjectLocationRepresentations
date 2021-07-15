@@ -66,10 +66,10 @@ for iROI = 1:length(ROIs)
                         for CatB = 1:categories
                             
                             data_train = [squeeze(data_bg(iTrainRun,LocationA,CatA,:));...
-                                squeeze(data_bg(iTrainRun,LocationA,CatB,:))];
+                                          squeeze(data_bg(iTrainRun,LocationA,CatB,:))];
                             
                             data_test  = [squeeze(data_bg(iTestRun,LocationB,CatA,:))';...
-                                squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
+                                          squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
                             
                             model = libsvmtrain(labels_train',data_train,'-s 0 -t 0 -q');
                             
