@@ -46,8 +46,6 @@ analysis=input('Which analysis would you like to run?\n Press \n 1 for ROI \n 2 
 % pick example subject
 if analysis == 2 || analysis == 3 % EEG
     sbj = 25;
-else
-    error('Please press 1=ROI,2=timecourse or 3=time-generalization.')
 end
 
 %% run selected analysis
@@ -55,12 +53,21 @@ if task ==1 % location analyses
     
     if analysis==1 % ROI
         
+        % run analysis
         for isub = 1:subs
             result       = Location_ROI(isub);
             result       = result';
             ROIs(isub,:) = result(:); clear result
         end
-        plot_ROI(ROIs,task);
+        
+        % test for significance above chance and plot
+        alpha = 0.05;
+        for itest = 1:size(ROIs,2)
+            
+            [p_rois(itest), h(itest)] = signrank(ROIs(:,itest));
+        end
+        [mask, crit_p, adj_ci_cvrg, adj_p] = fdr_bh(p_rois,alpha,'pdep');
+        plot_ROI(ROIs,task,mask);
         
     elseif analysis==2 % timecourse
         Location_Time_Resolved(steps,permutations,sbj);
@@ -69,18 +76,29 @@ if task ==1 % location analyses
     elseif analysis==3 % time-generalization
         Location_Time_Generalization(steps,permutations,sbj);
         plot_time_generalization(sbj,task);
+    else
+        error('Please press 1=ROI,2=timecourse or 3=time-generalization.')
     end
     
 else % category analyses
     
     if analysis==1 % ROI
         
+        % run analysis
         for isub = 1:subs
             result       =  Category_ROI(isub);
             result       = result';
             ROIs(isub,:) = result(:); clear result
         end
-        plot_ROI(ROIs,task);
+        
+        % test for significance above chance and plot
+        alpha = 0.05;
+        for itest = 1:size(ROIs,2)
+            
+            [p_rois(itest), h(itest)] = signrank(ROIs(:,itest));
+        end
+        [mask, crit_p, adj_ci_cvrg, adj_p] = fdr_bh(p_rois,alpha,'pdep');
+        plot_ROI(ROIs,task,mask);
         
     elseif analysis==2 % timecourse
         Category_Time_Resolved(steps,permutations,sbj);
@@ -89,6 +107,8 @@ else % category analyses
     elseif analysis==3 % time-generalization
         Category_Time_Generalization(steps,permutations,sbj);
         plot_time_generalization(sbj,task);
+    else
+        error('Please press 1=ROI,2=timecourse or 3=time-generalization.')
     end
     
 end
