@@ -27,12 +27,17 @@ set(0,'DefaultTextFontname', 'Helvetica')
 set(0,'DefaultAxesFontSize',25)
 set(0,'DefaultTextFontSize',25)
 set(gcf,'Color','w')
+barcolor = nan; % initialize
 hold on
 
 % colors
 c1 = [0.6,0.6,0.6];
 c2 = [0,1,0];
 c3 = [0,0,1];
+
+% c1 = [0.6,0.6,0.6];
+% c2 = [0,0.7,0];
+% c3 = [0,0,0.7];
 
 % fake bars (for legend)
 h=bar(0,0);
@@ -67,21 +72,33 @@ no  = [1:3:length(m)-2];
 low = [2:3:length(m)-1];
 
 % plot bars
-for i=1:size(myData,2) 
+for ibar=1:size(myData,2)
     
-    h = bar(xb(i),m(i)); 
-    if ismember(i,no) % nobg
+    h = bar(xb(ibar),m(ibar));
+    clear barcolor
+    if ismember(ibar,no) % nobg
         set(h,'facecolor',c1);
-    elseif ismember(i,low) % low clutter
+        barcolor = c1;
+    elseif ismember(ibar,low) % low clutter
         set(h,'facecolor',c2);
+        barcolor = c2;
     else
         set(h,'facecolor',c3); % high clutter
+        barcolor = c3;
     end
     set(h,'linewidth',3);
     
-    hl = line([xb(i),xb(i)],[m(i)-se(i),m(i)+se(i)]);
+    hl = line([xb(ibar),xb(ibar)],[m(ibar)-se(ibar),m(ibar)+se(ibar)]);
     set(hl,'linewidth',3);
     set(hl,'color','k');
+    
+    % plot single subject dots for single bar for correct x-axis position
+    for isub=1:size(myData,1)
+%         plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',barcolor+0.3);
+        plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',[0.5 0.5 0.5]);
+        hold on
+    end
+    
 end
 
 % legend
@@ -95,7 +112,7 @@ set(gca,'linewidth',3);
 set(gca,'xtick',[xb(low,1)]);
 set(gca,'xticklabel',{'V1' 'V2' 'V3' 'V4' 'LOC' 'IPS0' 'IPS1' 'IPS2' 'SPL'});
 axis tight
-ylim(ylims);
+% ylim(ylims);
 xlim([0.2 length(m)+3]);
 set(gca,'ticklength',2*get(gca,'ticklength'))
 title(filename)
