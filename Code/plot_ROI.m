@@ -1,4 +1,4 @@
-function plot_ROI(myData,task)
+function plot_ROI(myData,task,mask)
 % plotting of ROI results either for decoding of object location across
 % categories (task==1) or vice versa (task==2), within each
 % background condition separately.
@@ -34,10 +34,6 @@ hold on
 c1 = [0.6,0.6,0.6];
 c2 = [0,1,0];
 c3 = [0,0,1];
-
-% c1 = [0.6,0.6,0.6];
-% c2 = [0,0.7,0];
-% c3 = [0,0,0.7];
 
 % fake bars (for legend)
 h=bar(0,0);
@@ -94,9 +90,16 @@ for ibar=1:size(myData,2)
     
     % plot single subject dots for single bar for correct x-axis position
     for isub=1:size(myData,1)
-%         plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',barcolor+0.3);
         plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',[0.5 0.5 0.5]);
         hold on
+    end
+    
+    % significance marker
+    if mask(ibar)==1
+        h = text(xb(ibar)-0.3,m(ibar) + se(ibar)*1.3,'*');
+        set(h,'color','k');
+        set(h,'linewidth',3);
+        set(h,'fontsize',36);
     end
     
 end
