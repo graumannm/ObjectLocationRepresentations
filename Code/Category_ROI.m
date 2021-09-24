@@ -16,9 +16,6 @@ if ~isdir(savepath); mkdir(savepath); end
 filename = ['s' sprintf('%.2d',sbj) '_Category_ROI'];
 ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO' 'IPS0' 'IPS1' 'IPS2' 'SPL'};
 
-% load design matrix for indexing of conditions in decoding loop
-load('DesignMatrix_48x3.mat');
-
 % define decoding parameters
 runs         = 10; % number of fMRI runs
 bg           = 3;  % number of background conditions
@@ -85,7 +82,7 @@ for iROI = 1:length(ROIs)
         end
         
         % average across runs
-        RDM = squeeze(nanmean(RDM,1)); % cat x cat x loc x loc
+        RDM = squeeze(nanmean(RDM,1)); %  loc x loc x cat x cat
         
         % average across upper diagonal, which is category decoding
         DA = squeeze(nanmean(RDM(:,:,triu(ones(4,4),1)>0),3));

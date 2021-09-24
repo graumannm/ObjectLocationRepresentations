@@ -16,9 +16,6 @@ if ~isdir(savepath); mkdir(savepath); end
 filename = ['s' sprintf('%.2d',sbj) '_Location_ROI'];
 ROIs     = {'V1' 'V2' 'V3' 'V4' 'LO' 'IPS0' 'IPS1' 'IPS2' 'SPL'};
 
-% load design matrix for indexing of conditions in decoding loop
-load('DesignMatrix_48x3.mat');
-
 % define classification parameters
 runs         = 10; % number of fMRI runs
 bg           = 3;  % number of background conditions
