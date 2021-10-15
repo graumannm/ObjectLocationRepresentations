@@ -35,9 +35,9 @@ timewindow = 1:steps:length(timepoints);
 % clutter condition to keep all equal.
 % 2nd half was 1/3 of trials for no, low and high clutter.
 if sbj<17
-    [RDM, patterns] = location_timecourse_1sthalf(data,timewindow,permutations);
+    RDM = location_timecourse_1sthalf(data,timewindow,permutations);
 elseif sbj > 16 
-    [RDM, patterns] = location_timecourse_2ndhalf(data,timewindow,permutations);
+    RDM = location_timecourse_2ndhalf(data,timewindow,permutations);
 else
     error('wrong subject input! Has to be integer between 1 and 29!')
 end
@@ -45,5 +45,5 @@ end
 duration = toc;
 
 % save result
-save([savepath 's' sprintf('%.2d',sbj) '_' filename '.mat' ],'RDM','patterns','timepoints','timewindow','duration','-v7.3');
+save([savepath 's' sprintf('%.2d',sbj) '_' filename '.mat' ],'RDM','timepoints','timewindow','duration','-v7.3');
 
