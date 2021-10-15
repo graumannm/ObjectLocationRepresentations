@@ -90,7 +90,7 @@ for ibar=1:size(myData,2)
     
     % plot single subject dots for single bar for correct x-axis position
     for isub=1:size(myData,1)
-        plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',[0.5 0.5 0.5]);
+        plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',[0.5 0.5 0.5],'Markersize',12);
         hold on
     end
     
