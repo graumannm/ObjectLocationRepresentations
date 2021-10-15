@@ -1,4 +1,4 @@
-function [RDM, patterns] = location_timecourse_1sthalf(data,timewindow,permutations)
+function [RDM] = location_timecourse_1sthalf(data,timewindow,permutations)
 % use for subjects 1:16
 
 % subsample those timepoints from data (if steps>1, otherwise will take all)
@@ -23,9 +23,6 @@ load('DesignMatrix_32x3.mat');
 % preallocate results RDM of dimensions:
 % permutations x 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x time
 wholeRDM      = single(nan(permutations,clutter,bg,locations,locations,categories,categories,length(timewindow)));
-
-% preallocate pattern vectors
-wholepatterns = single(nan(permutations,clutter,bg,locations,locations,categories,categories, size(data{1},3), length(timewindow) ));
 
 % start decoding loop
 for iperm = 1:permutations
@@ -67,7 +64,7 @@ for iperm = 1:permutations
                             testdataB = squeeze(white_data{iClutter}(testB,:,:,:));
                             
                             % for current location pair, cross-decode at all timepoints
-                            [wholeRDM(iperm,iClutter,iBG,locationA,locationB,catA,catB,:), wholepatterns(iperm,iClutter,iBG,locationA,locationB,catA,catB,:,:)] = ...
+                            [wholeRDM(iperm,iClutter,iBG,locationA,locationB,catA,catB,:)] = ...
                                 traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test,train_col);
                         end
                     end
@@ -79,7 +76,6 @@ end
 
 % average RDM across permutations
 wholeRDM      = squeeze(nanmean(wholeRDM,1));
-wholepatterns = squeeze(nanmean(wholepatterns,1));
 
 % bring into same dimensions as 2nd half of experiment by extracting decoding within no,
 % low and high clutter
@@ -88,9 +84,3 @@ RDM  = single(nan(3,locations,locations,categories,categories,length(timewindow)
 RDM(1,:,:,:,:,:) = squeeze(wholeRDM(1,1,:,:,:,:,:)); % use only half of no clutter so number is equal across clutter conditions
 RDM(2,:,:,:,:,:) = squeeze(wholeRDM(1,2,:,:,:,:,:)); % clutter low=1; background yes=2
 RDM(3,:,:,:,:,:) = squeeze(wholeRDM(2,2,:,:,:,:,:)); % clutter high=2; background yes=2
-
-% pattern
-patterns  = single(nan(3,locations,locations,categories,categories, size(data{1},3), length(timewindow)));
-patterns(1,:,:,:,:,:,:) = squeeze(wholepatterns(1,1,:,:,:,:,:,:));
-patterns(2,:,:,:,:,:,:) = squeeze(wholepatterns(1,2,:,:,:,:,:,:));
-patterns(3,:,:,:,:,:,:) = squeeze(wholepatterns(1,2,:,:,:,:,:,:));
