@@ -49,11 +49,11 @@ for iperm = 1:permutations
                     for catA = 1:categories
                         for catB = 1:categories
                             
-                            trainA = find(DM.values(:,1)== catA & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
-                            trainB = find(DM.values(:,1)== catA & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
+                            trainA = find(DM.values(:,1)==catA & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
+                            trainB = find(DM.values(:,1)==catA & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                             
-                            testA  = find(DM.values(:,1)== catB & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
-                            testB  = find(DM.values(:,1)== catB & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
+                            testA  = find(DM.values(:,1)==catB & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
+                            testB  = find(DM.values(:,1)==catB & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                             
                             traindataA = squeeze(white_data(trainA,:,:,:));
                             traindataB = squeeze(white_data(trainB,:,:,:));
