@@ -1,8 +1,7 @@
-function [time_vec, patterns] = traintest(trainA,trainB,testA,testB,timewindow,labels_train,labels_test,train_col)
+function [time_vec] = traintest(trainA,trainB,testA,testB,timewindow,labels_train,labels_test,train_col)
 % cross decode between condtions. Only within time.
 
 time_vec  = nan(1,length(timewindow));
-patterns  = nan(size(trainA,2), length(timewindow));
 
 for iTime = 1:length(timewindow) % size of data
     
@@ -14,9 +13,6 @@ for iTime = 1:length(timewindow) % size of data
     test_data = [squeeze(testA(end,:,iTime)) ; squeeze(testB(end,:,iTime)) ];
     [predicted_label, l_accuracy, decision_values] = libsvmpredict(labels_test, test_data, model); 
     time_vec(iTime) = [l_accuracy(1)];
-    
-    % extract patterns
-    [patterns(:,iTime)] = get_transformed_patterns(model,train_data);
     
 end
 
