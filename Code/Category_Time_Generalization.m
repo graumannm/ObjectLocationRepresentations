@@ -1,5 +1,5 @@
 function Category_Time_Generalization(steps,permutations,sbj)
-% Analysis corresponding to Fig. 4f.
+% Analysis corresponding to Fig. 6g.
 % Time-generalization analysis of object category across locations, background and time.
 % Additionally to cross-decoding across locations, we train on
 % all timepoints in the no clutter and test on all timepoints in the high
@@ -11,8 +11,8 @@ function Category_Time_Generalization(steps,permutations,sbj)
 % 100 permutations downsampled to 10 ms resolution takes ~82 minutes
 
 % Input:
-%       steps: time steps to analyze, integer. 1= 1 ms resolution. Use steps=10 to
-%       downsample to 10 ms resolution to make script run faster
+%       steps: time steps to analyze, integer. Use steps=10 to
+%       downsample to 10 ms resolution to make script run faster (used in paper)
 %       permutations: how many permutations, integer
 %       sbj: subject's number, integer
 
@@ -31,8 +31,8 @@ load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 time_end   = find(timepoints==600); % like in paper, we analyze up until 600 ms post-stimulus to save time and memory
 timewindow = 1:steps:time_end;
 
-% forward to code for 1st and second half of experiment. In 1st half design was
-% 50 % no, 25% low and 25 % high clutter, but we only take 25% of no
+% forward to functions for 1st and second half of experiment. In 1st half design was
+% 50 % no, 25% low and 25 % high clutter, but we only take 25% of the no
 % clutter condition to keep all equal.
 % 2nd half was 1/3 of trials for no, low and high clutter.
 if sbj<17

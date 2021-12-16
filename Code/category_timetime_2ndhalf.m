@@ -1,7 +1,7 @@
 function [RDM] = category_timetime_2ndhalf(data,timewindow,permutations)
 % use for subjects 17:29
 
-% then subsample those timepoints from data (if steps>1, otherwise will take all)
+% then subsample chosen timepoints from data (if steps>1, otherwise will take all)
 data = data(:,:,:,timewindow);
 
 % define decoding parameters
@@ -20,7 +20,7 @@ labels_test  = vertcat(ones(length(test_col),1),2*ones(length(test_col),1));    
 load('DesignMatrix_48x3.mat');
 
 % preallocate results RDM of dimensions:
-% permutations x 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x time
+% permutations x 4 locations x 4 locations x 4 categories x 4 categories x time x time
 RDM = single(nan(permutations,locations,locations,categories,categories,length(timewindow),length(timewindow)));
 
 % start decoding loop
@@ -43,8 +43,9 @@ for iperm = 1:permutations
         for locationB = 1:locations
             
             for catA = 1:categories
-                for catB = 1:categories % we need all for diagonal
+                for catB = 1:categories % we need all for both off-diagonals
                     
+                    % find condition for indexing
                     trainA = find(DM.values(:,1)== catA & DM.values(:,2)==locationA & DM.values(:,3)==no_clutter);
                     trainB = find(DM.values(:,1)== catB & DM.values(:,2)==locationA & DM.values(:,3)==no_clutter);
                     
