@@ -1,5 +1,5 @@
 function [RDM] = location_timetime_1sthalf(data,timewindow,permutations)
-% use for subjects 17:29
+% use for subjects 1:16
 
 % subsample those timepoints from data (if steps>1, otherwise will take all)
 data{1} = data{1}(:,:,:,timewindow);
