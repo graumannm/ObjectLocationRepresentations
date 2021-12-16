@@ -43,9 +43,9 @@ h=bar(0,0);
 set(h,'facecolor',c3);
 set(h,'linewidth',3);
 
-
-xb = nan(1,length(myData)); % vector containing bar positions
-xb(1,1)=1.05;
+% define bar positions
+xb      = nan(1,length(myData)); % vector containing bar positions
+xb(1,1) = 1.05;
 for j = 2:15
     
     if ismember(j,[4,7,10,13]) % big step before new layer
@@ -58,7 +58,6 @@ end
 
 % plot it
 for i=1:size(myData,2)
-    
     
     % plot the bar
     h = bar(xb(i),myData(i)); % xb says where m(i) belongs
@@ -86,7 +85,7 @@ set(gca,'xticklabel',layers);
 axis tight
 yl=get(gca,'ylim');
 ylim([0,yl(2)*1.25]);
-xlim([0.2 14]); % make x-axis wider so all bars are visible
+xlim([0.2 14]);
 set(gca,'ticklength',2*get(gca,'ticklength'))
 
 

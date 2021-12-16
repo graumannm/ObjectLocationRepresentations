@@ -1,5 +1,5 @@
 function Location_Time_Resolved(steps,permutations,sbj)
-% Analysis corresponding to Fig. 3a.
+% Analysis corresponding to Fig. 5a.
 % Time-resolved EEG cross-decoding of object location across categories, in
 % each background condition separately. 
 % Saves single subject's time-resolved RDM.
@@ -14,9 +14,8 @@ function Location_Time_Resolved(steps,permutations,sbj)
 %       permutations: how many permutations, integer
 %       sbj: subject's number, integer
 
-tic
-
 % prepare paths & filenames
+tic
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 savepath = './Results/EEG/';

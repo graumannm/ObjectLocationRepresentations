@@ -37,7 +37,6 @@ for iperm = 1:permutations
     
     % now perform pairwise cross-decoding of all category pairs, across all
     % combinations of locations and within each background condition
-    
     for iBG = 1:bg
             
             for locationA = 1:locations

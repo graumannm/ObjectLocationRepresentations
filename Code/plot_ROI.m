@@ -9,10 +9,10 @@ function plot_ROI(myData,task,mask)
 
 if task == 1
     filename = 'Location';
-    ylims = [-1 25];
+    ylims = [-6 40];
 else
     filename = 'Category';
-    ylims = [-1.5 7];
+    ylims = [-6 25];
 end
 
 BG    = 3;
@@ -49,6 +49,7 @@ set(h,'linewidth',3);
 % means
 m = mean(myData);
 
+% define bar positions
 xb       = nan(BG,nrois); % vector containing bar positions
 xb(1,1)  = 1.05;
 newsteps = (BG+1):BG:length(m)-2;
@@ -72,7 +73,7 @@ for ibar=1:size(myData,2)
     
     h = bar(xb(ibar),m(ibar));
     clear barcolor
-    if ismember(ibar,no) % nobg
+    if ismember(ibar,no) % no clutter
         set(h,'facecolor',c1);
         barcolor = c1;
     elseif ismember(ibar,low) % low clutter
@@ -88,7 +89,7 @@ for ibar=1:size(myData,2)
     set(hl,'linewidth',3);
     set(hl,'color','k');
     
-    % plot single subject dots for single bar for correct x-axis position
+    % plot single subject dots for single bar
     for isub=1:size(myData,1)
         plot(xb(ibar),squeeze(myData(isub,ibar)),'.','Color',[0.5 0.5 0.5],'Markersize',12);
         hold on
@@ -115,7 +116,7 @@ set(gca,'linewidth',3);
 set(gca,'xtick',[xb(low,1)]);
 set(gca,'xticklabel',{'V1' 'V2' 'V3' 'V4' 'LOC' 'IPS0' 'IPS1' 'IPS2' 'SPL'});
 axis tight
-% ylim(ylims);
+ylim(ylims);
 xlim([0.2 length(m)+3]);
 set(gca,'ticklength',2*get(gca,'ticklength'))
 title(filename)

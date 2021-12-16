@@ -1,4 +1,4 @@
-function [RDM] = location_timetime_1sthalf(data,timewindow,permutations)
+function RDM = location_timetime_1sthalf(data,timewindow,permutations)
 % use for subjects 1:16
 
 % subsample chosen timepoints from data (if steps>1, otherwise will take all)
@@ -30,6 +30,7 @@ for iperm = 1:permutations
     fprintf('Permutation #%d out of %d \n',iperm,permutations)
     
     for iClutter = 1:high_clutter
+        
         % bin the data
         perm_data   = data{iClutter}(:,randperm(size(data{iClutter},2)),:,:); % randomize trial order
         binned_data = reshape(perm_data, [size(perm_data,1) binsize bins size(perm_data,3) size(perm_data,4)] ); clear perm_data
@@ -42,7 +43,6 @@ for iperm = 1:permutations
     
     % now perform pairwise cross-decoding of all location pairs, across
     %  categories, backgrounds and time points
-    
     for locationA = 1:locations
         for locationB = 1:locations
             
@@ -59,12 +59,14 @@ for iperm = 1:permutations
                     
                     for timeA = 1:length(timewindow)
                         
+                        % extract data
                         traindataA = squeeze(white_data{no_clutter}(trainA,train_col,:,timeA));
                         traindataB = squeeze(white_data{no_clutter}(trainB,train_col,:,timeA));
                         
                         testdataA = squeeze(white_data{high_clutter}(testA,:,:,:));
                         testdataB = squeeze(white_data{high_clutter}(testB,:,:,:));
                         
+                        % decode
                         [RDM(iperm,locationA,locationB,catA,catB,timeA,:)] = ...
                         Xtime_traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test);
                         

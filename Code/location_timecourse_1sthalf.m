@@ -82,7 +82,6 @@ wholeRDM = squeeze(nanmean(wholeRDM,1));
 
 % bring into same dimensions as 2nd half of experiment by extracting decoding within no,
 % low and high clutter
-% RDM
 RDM              = single(nan(3,locations,locations,categories,categories,length(timewindow)));% preallocate RDM
 RDM(1,:,:,:,:,:) = squeeze(wholeRDM(1,1,:,:,:,:,:)); % use only half of no clutter so number is equal across clutter conditions
 RDM(2,:,:,:,:,:) = squeeze(wholeRDM(1,2,:,:,:,:,:)); % clutter low=1; background yes=2

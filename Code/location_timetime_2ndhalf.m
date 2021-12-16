@@ -1,7 +1,7 @@
-function [RDM] = location_timetime_2ndhalf(data,timewindow,permutations)
+function RDM = location_timetime_2ndhalf(data,timewindow,permutations)
 % use for subjects 17:29
 
-% then subsample chosen timepoints from data (if steps>1, otherwise will take all)
+% subsample chosen timepoints from data (if steps>1, otherwise will take all)
 data = data(:,:,:,timewindow);
 
 % define decoding parameters
@@ -38,7 +38,6 @@ for iperm = 1:permutations
     
     % now perform pairwise cross-decoding of all location pairs, across
     %  categories, backgrounds and time points
-    
     for locationA = 1:locations
         for locationB = 1:locations
             
@@ -55,12 +54,14 @@ for iperm = 1:permutations
                     
                     for timeA = 1:length(timewindow)
                         
+                        % extract data
                         traindataA = squeeze(white_data(trainA,train_col,:,timeA));
                         traindataB = squeeze(white_data(trainB,train_col,:,timeA));
                         
                         testdataA = squeeze(white_data(testA,:,:,:));
                         testdataB = squeeze(white_data(testB,:,:,:));
                         
+                        % decode
                         [RDM(iperm,locationA,locationB,catA,catB,timeA,:)] = ...
                         Xtime_traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test);
                         

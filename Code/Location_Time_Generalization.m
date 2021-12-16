@@ -12,7 +12,7 @@ function Location_Time_Generalization(steps,permutations,sbj)
 
 % Input:
 %       steps: time steps to analyze, integer. 1= 1 ms resolution. Use steps=10 to
-%       downsample to 10 ms resolution to make script run faster
+%       downsample to 10 ms resolution to make script run faster (used in paper)
 %       permutations: how many permutations, integer
 %       sbj: subject's number, integer
 
