@@ -26,14 +26,14 @@ To change the parameters for the EEG analyses, change the values of the variable
 
 Durations can vary slightly depending on computing resources. 
 
-# 1) Time-resolved EEG classification: 
+#1) Time-resolved EEG classification: 
 
 Fast parameters (default): ~37 seconds. The fast parameters downsample the EEG time course with a 10 ms resolution and 5 permutations. The result gives a close approximation to the result with original parameters.
 
 Original parameters: ~2 hours. 100 permutations with 1 ms resolution.
 
 
-# 2) EEG time-generalization:
+#2) EEG time-generalization:
 
 Fast parameters (default): ~4 minutes. The fast parameters use 5 permutations. The result gives a close approximation to the result with original parameters.
 
@@ -42,7 +42,7 @@ Original parameters: ~85 minutes. 100 permutations with 10 ms resolution.
 Both fast and original version downsample the time points to a 10 ms resolution for speed and efficiency.
 
 
-# 3) ROI classification:
+#3) ROI classification:
 
 ~ 2 minutes
 
