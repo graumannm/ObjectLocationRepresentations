@@ -17,9 +17,9 @@ function Category_Time_Generalization(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
-addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/HelperFunctions');
-addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/LibsvmFunctions'); % libsvm 3.1.1.
-savepath = './home/monikag/CATLOC/ObjectLocationRepresentations/Code/Results/EEG/';
+addpath('Code/HelperFunctions');
+addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = './Results/EEG/';
 if ~isdir(savepath); mkdir(savepath); end
 filename = 'Category_TimeGeneralization';
 
