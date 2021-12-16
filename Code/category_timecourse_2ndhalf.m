@@ -1,4 +1,5 @@
 function RDM = category_timecourse_2ndhalf(data,timewindow,permutations)
+% use for subjects 17:29
 
 % then subsample those timepoints from data (if steps>1, otherwise will take all)
 data = data(:,:,:,timewindow);
