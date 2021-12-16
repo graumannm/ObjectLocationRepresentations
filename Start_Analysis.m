@@ -124,9 +124,9 @@ end
 % iBG     = 1; % 1= no, 2= low, 3= high clutter
 % subject = 1;
 % Location_Searchlight(subject,iBG);
-
-% to plot the (existing) result uncomment and run this line:
-
+% 
+% % to plot the (existing) result uncomment and run this line:
+% 
 % plot_searchlight(1,iBG);
 
 %% Optional: DNN analysis (~40 minutes with 5 permutations)
