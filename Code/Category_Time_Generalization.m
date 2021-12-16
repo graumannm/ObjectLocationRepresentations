@@ -25,7 +25,7 @@ filename = 'Category_TimeGeneralization';
 
 % load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
 % time points
-load(sprintf('/home/monikag/CATLOC/ObjectLocationRepresentations/Data/EEG/s%.2d_EEG.mat',sbj));
+load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
 time_end   = find(timepoints==600); % like in paper, we analyze up until 600 ms post-stimulus to save time and memory
