@@ -1,4 +1,4 @@
-function [RDM, patterns] = category_timecourse_2ndhalf(data,timewindow,permutations)
+function RDM = category_timecourse_2ndhalf(data,timewindow,permutations)
 
 % then subsample those timepoints from data (if steps>1, otherwise will take all)
 data = data(:,:,:,timewindow);
@@ -20,9 +20,6 @@ load('DesignMatrix_48x3.mat');
 % preallocate results RDM of dimensions: 
 % permutations x 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x time
 RDM = single(nan(permutations,bg,locations,locations,categories,categories,length(timewindow)));
-
-% preallocate pattern vectors
-patterns = single(nan(permutations,bg,locations,locations,categories,categories, size(data,3), length(timewindow) ));
 
 % start decoding loop 
 for iperm = 1:permutations
@@ -61,7 +58,7 @@ for iperm = 1:permutations
                             testdataB = squeeze(white_data(testB,:,:,:));
                             
                             % for current location pair, cross-decode at all timepoints
-                            [RDM(iperm,iBG,locationA,locationB,catA,catB,:), patterns(iperm,iBG,locationA,locationB,catA,catB,:,:)] = ...
+                            RDM(iperm,iBG,locationA,locationB,catA,catB,:) = ...
                              traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test,train_col);
                         end
                     end

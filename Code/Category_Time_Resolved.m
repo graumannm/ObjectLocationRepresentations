@@ -15,15 +15,15 @@ function Category_Time_Resolved(steps,permutations,sbj)
 %       sbj: subject's number, integer
 
 tic
-addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/HelperFunctions');
-addpath('/home/monikag/CATLOC/ObjectLocationRepresentations/Code/LibsvmFunctions'); % libsvm 3.1.1.
-savepath = '/home/monikag/CATLOC/ObjectLocationRepresentations/Results/EEG/';
+addpath('Code/HelperFunctions');
+addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
+savepath = './Results/EEG/';
 if ~isdir(savepath); mkdir(savepath); end
 filename = ['Category_Timecourse' ];
 
 % load data. Dimensions: 48 conditions x 60 trials x 63 channels x 1100
 % time points
-load(sprintf('/home/monikag/CATLOC/ObjectLocationRepresentations/Data/EEG/s%.2d_EEG.mat',sbj));
+load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 
 % define which time points to analyze
 timewindow = 1:steps:length(timepoints);
@@ -33,9 +33,9 @@ timewindow = 1:steps:length(timepoints);
 % clutter condition to keep all equal.
 % 2nd half was 1/3 of trials for no, low and high clutter.
 if sbj<17
-    [RDM, patterns] = category_timecourse_1sthalf(data,timewindow,permutations);
+    RDM = category_timecourse_1sthalf(data,timewindow,permutations);
 elseif sbj > 16 
-    [RDM, patterns] = category_timecourse_2ndhalf(data,timewindow,permutations);
+    RDM = category_timecourse_2ndhalf(data,timewindow,permutations);
 else
     error('wrong subject input! Has to be integer between 1 and 29!')
 end
@@ -43,5 +43,5 @@ end
 duration = toc;
 
 % save result
-save([savepath 's' sprintf('%.2d',sbj) '_' filename '.mat' ],'RDM','patterns','timepoints','timewindow','duration','-v7.3');
+save([savepath 's' sprintf('%.2d',sbj) '_' filename '.mat' ],'RDM','timepoints','timewindow','duration','-v7.3');
 
