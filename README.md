@@ -42,7 +42,7 @@ Original parameters: ~85 minutes. 100 permutations with 10 ms resolution.
 Both fast and original version downsample the time points to a 10 ms resolution for speed and efficiency.
 
 
-### 3) ROI classification:
+3) ROI classification:
 
 ~ 2 minutes
 
