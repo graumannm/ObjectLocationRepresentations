@@ -1,5 +1,5 @@
 function [result] = Location_ROI(sbj)
-% Analysis corresponding to Fig. 2c.
+% Analysis corresponding to Fig. 3b.
 % Classification of object location across categories in each background
 % condition separately and in each ROI.
 
@@ -7,6 +7,10 @@ function [result] = Location_ROI(sbj)
 
 % Input:
 %       sbj = subject number, integer
+
+% Output:
+%       result = classification accuracies with dimensions ROIs x
+%       backgrounds, matrix
 
 % prepare paths & filenames
 addpath('Code/HelperFunctions');
@@ -21,7 +25,7 @@ runs         = 10; % number of fMRI runs
 bg           = 3;  % number of background conditions
 locations    = 4;
 categories   = 4;
-bins         = 2;
+bins         = 2; % number of runs to average into single pseudo-trial
 result       = nan(length(ROIs),bg); % pre-allocate results matrix
 chance_level = 50;
 
@@ -54,7 +58,7 @@ for iROI = 1:length(ROIs)
             
             % leave-one-run-out cross-validation
             iTrainRun = find([1:size(data_bg,1)]~=iRun);  % index to runs for training (all except one)
-            iTestRun  = iRun;                          % index to run for testing (the one left out)
+            iTestRun  = iRun;                             % index to run for testing (the one left out)
             
             for LocationA = 1:locations
                 for LocationB = 1:locations
@@ -63,10 +67,10 @@ for iROI = 1:length(ROIs)
                         for CatB = 1:categories
                             
                             data_train = [squeeze(data_bg(iTrainRun,LocationA,CatA,:));...
-                                squeeze(data_bg(iTrainRun,LocationB,CatA,:))];
+                                          squeeze(data_bg(iTrainRun,LocationB,CatA,:))];
                             
                             data_test  = [squeeze(data_bg(iTestRun,LocationA,CatB,:))';...
-                                squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
+                                          squeeze(data_bg(iTestRun,LocationB,CatB,:))'];
                             
                             model = libsvmtrain(labels_train',data_train,'-s 0 -t 0 -q');
                             
@@ -97,7 +101,7 @@ for iROI = 1:length(ROIs)
         clear DA data_bg
         
         % save RDM for each background and ROI
-        RDM_BGs(iROI,iBG,:,:,:,:) = RDM;
+        RDM_BGs(iROI,iBG,:,:,:,:) = RDM; clear RDM
         
     end
     clear data

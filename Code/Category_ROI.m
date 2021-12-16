@@ -98,7 +98,7 @@ for iROI = 1:length(ROIs)
         clear DA data_bg
         
         % save RDM for each background and ROI
-        RDM_BGs(iROI,iBG,:,:,:,:) = RDM;
+        RDM_BGs(iROI,iBG,:,:,:,:) = RDM; clear RDM
         
     end
     clear data
