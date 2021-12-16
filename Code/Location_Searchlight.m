@@ -127,7 +127,7 @@ SL = squeeze(nanmean(SL(:,:,:,eye(4,4)==0),4))-chance_level;
 %% save
 
 % 1) as mat file
-save([savepath '_' filename  '.mat'],'SL','-v7.3');
+save([savepath filename  '.mat'],'SL','-v7.3');
 
 % 2) as .img file that can be viewed in a viewer like xjview or mricron
 results_hdr         = vol_hdr; % use previous header and adapt it
