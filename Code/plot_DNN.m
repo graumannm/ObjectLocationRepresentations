@@ -81,7 +81,7 @@ set(L,'box','off');
 ylabel('Classification Accuracy (%)');
 xlabel([DNN ' layer'])
 set(gca,'linewidth',3);
-set(gca,'xtick',[xb([2,5,8,11],1)]); % where to put labels
+set(gca,'xtick',[xb([2,5,8,11])]); % where to put labels
 set(gca,'xticklabel',layers);
 axis tight
 yl=get(gca,'ylim');
