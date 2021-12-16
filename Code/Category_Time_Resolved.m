@@ -1,12 +1,12 @@
 function Category_Time_Resolved(steps,permutations,sbj)
-% Analysis corresponding to Fig. 4c.
+% Analysis corresponding to Fig. 6c.
 % Time-resolved EEG cross-decoding of object category across locations, in
 % each background condition separately.
 % Saves single subject's time-resolved RDM.
 
 % Duration:
 % 5 permutations downsampled to 10 ms resolution takes ~37 seconds
-% 100 permutations with full 1 ms resulution takes ~2 hours
+% 100 permutations with full 1 ms resulution takes ~2 hours (paper version)
 
 % Input:
 %       steps: time steps to analyze, integer. 1= 1 ms resolution. Use steps=10 to
@@ -28,8 +28,8 @@ load(sprintf('./Data/EEG/s%.2d_EEG.mat',sbj));
 % define which time points to analyze
 timewindow = 1:steps:length(timepoints);
 
-% forward to code for 1st and second half of experiment. In 1st half design was
-% 50 % no, 25% low and 25 % high clutter, but we only take 25% of no
+% forward to functions for 1st and second half of experiment. In 1st half design was
+% 50 % no, 25% low and 25 % high clutter, but we only take 25% of the no
 % clutter condition to keep all equal.
 % 2nd half was 1/3 of trials for no, low and high clutter.
 if sbj<17

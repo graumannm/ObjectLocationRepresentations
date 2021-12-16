@@ -1,5 +1,5 @@
 function Location_DNN(permutations,ilayer)
-% Analysis corresponding to Fig. 2e.
+% Analysis corresponding to Fig. 3d.
 % Classification of object location across categories in each background
 % condition separately and in one layer of CORnet-S.
 
@@ -9,9 +9,8 @@ function Location_DNN(permutations,ilayer)
 %       permutations: how many permutations, integer
 %       ilayer: which layer, integer. 1=V1,2=V2,3=V4,4=IT
 
-tic
-
 % prepare paths & filenames
+tic
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 name     = 'CORnet-S';
@@ -30,7 +29,7 @@ data = layer; clear layer
 
 % define classification parameters
 chance_level = 50;
-timewindow   = 1; % use 1 fake 'timepoint' to use EEG classification function
+timewindow   = 1; % use 1 fake 'timepoint' to use the EEG classification function
 locations    = 4;
 categories   = 4;
 bg           = 3;
@@ -63,18 +62,21 @@ for iperm = 1:permutations
                 for catA = 1:categories
                     for catB = 1:categories
                         
+                        % find condition's index
                         trainA = find(DM.values(:,1)== catA & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
                         trainB = find(DM.values(:,1)== catA & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                         
                         testA  = find(DM.values(:,1)== catB & DM.values(:,2)==locationA & DM.values(:,3)==iBG-1);
                         testB  = find(DM.values(:,1)== catB & DM.values(:,2)==locationB & DM.values(:,3)==iBG-1);
                         
+                        % extract data
                         traindataA = squeeze(binned_data(:,trainA,:));
                         traindataB = squeeze(binned_data(:,trainB,:));
                         
                         testdataA = squeeze(binned_data(:,testA,:));
                         testdataB = squeeze(binned_data(:,testB,:));
                         
+                        % decode location across category
                         [RDM(iperm,iBG,locationA,locationB,catA,catB)] = ...
                          traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test,train_col);
                         

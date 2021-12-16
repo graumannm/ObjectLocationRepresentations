@@ -21,7 +21,7 @@ labels_test  = vertcat(ones(length(test_col),1),2*ones(length(test_col),1));    
 load('DesignMatrix_32x3.mat');
 
 % preallocate results RDM of dimensions:
-% permutations x 3 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x time
+% permutations x 2 clutter levels x 2 backgrounds x 4 locations x 4 locations x 4 categories x 4 categories x time
 wholeRDM      = single(nan(permutations,clutter,bg,locations,locations,categories,categories,length(timewindow)));
 
 % start decoding loop
@@ -30,6 +30,7 @@ for iperm = 1:permutations
     fprintf('Permutation #%d out of %d \n',iperm,permutations)
     
     for iClutter = 1:clutter
+        
         % bin the data
         perm_data   = data{iClutter}(:,randperm(size(data{iClutter},2)),:,:); % randomize trial order
         binned_data = reshape(perm_data, [size(perm_data,1) binsize bins size(perm_data,3) size(perm_data,4)] ); clear perm_data
@@ -51,19 +52,21 @@ for iperm = 1:permutations
                     for catA = 1:categories
                         for catB = 1:categories
                             
+                            % find conditions for indexing
                             trainA = find(DM(:,1)== catA & DM(:,2)==locationA & DM(:,3)==iBG-1);
                             trainB = find(DM(:,1)== catB & DM(:,2)==locationA & DM(:,3)==iBG-1);
                             
                             testA  = find(DM(:,1)== catA & DM(:,2)==locationB & DM(:,3)==iBG-1);
                             testB  = find(DM(:,1)== catB & DM(:,2)==locationB & DM(:,3)==iBG-1);
                             
+                            % extract data
                             traindataA = squeeze(white_data{iClutter}(trainA,:,:,:));
                             traindataB = squeeze(white_data{iClutter}(trainB,:,:,:));
                             
                             testdataA = squeeze(white_data{iClutter}(testA,:,:,:));
                             testdataB = squeeze(white_data{iClutter}(testB,:,:,:));
                             
-                            % for current location pair, cross-decode at all timepoints
+                            % for current category pair, cross-decode at all timepoints
                             wholeRDM(iperm,iClutter,iBG,locationA,locationB,catA,catB,:) = ...
                              traintest(traindataA,traindataB,testdataA,testdataB,timewindow,labels_train,labels_test,train_col);
                         end
@@ -75,12 +78,11 @@ for iperm = 1:permutations
 end
 
 % average RDM across permutations
-wholeRDM      = squeeze(nanmean(wholeRDM,1));
+wholeRDM = squeeze(nanmean(wholeRDM,1));
 
 % bring into same dimensions as 2nd half of experiment by extracting decoding within no,
 % low and high clutter
-% RDM
-RDM  = single(nan(3,locations,locations,categories,categories,length(timewindow)));% adjusted RDM
+RDM              = single(nan(3,locations,locations,categories,categories,length(timewindow)));% preallocate RDM
 RDM(1,:,:,:,:,:) = squeeze(wholeRDM(1,1,:,:,:,:,:)); % use only half of no clutter so number is equal across clutter conditions
 RDM(2,:,:,:,:,:) = squeeze(wholeRDM(1,2,:,:,:,:,:)); % clutter low=1; background yes=2
 RDM(3,:,:,:,:,:) = squeeze(wholeRDM(2,2,:,:,:,:,:)); % clutter high=2; background yes=2

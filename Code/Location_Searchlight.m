@@ -1,5 +1,5 @@
 function Location_Searchlight(sbj,BG)
-% Analysis corresponding to Fig. 2d.
+% Analysis corresponding to Fig. 3c.
 % Whole brain searchlight classsification of object location across categories in each background
 % condition separately.
 % Requirement: SPM has to be in the path.
@@ -11,9 +11,8 @@ function Location_Searchlight(sbj,BG)
 %       sbj = subject number, integer
 %       BG = background, integer. 1=no, 2=low, 3= high clutter.
 
-tic
-
 % prepare paths & filenames
+tic
 addpath('Code/HelperFunctions');
 addpath('Code/LibsvmFunctions'); % libsvm 3.1.1.
 savepath              = ['./Results/fMRI/Searchlight/s' sprintf('%.2d',sbj) '/'];
@@ -51,7 +50,7 @@ idx_volume(brain_index) = 1:length(brain_index);   % values inside brain are ind
 nvox                    = length(brain_index);     % number of voxels
 
 % classification parameters
-labels_train = [ones(1,(size(data,1))-1) 2*ones(1,(size(data,1))-1)]; %labels for training
+labels_train = [ones(1,(size(data,1))-1) 2*ones(1,(size(data,1))-1)]; % labels for training
 labels_test  = [1 2]; % labels for the left our run
 locations    = 4;
 categories   = 4;
@@ -132,7 +131,7 @@ save([savepath filename  '.mat'],'SL','-v7.3');
 % 2) as .img file that can be viewed in a viewer like xjview or mricron
 results_hdr         = vol_hdr; % use previous header and adapt it
 results_hdr.descrip = 'location across category'; 
-results_hdr.private =   [];                               
+results_hdr.private = [];                               
 results_hdr.fname   = [savepath filename  '.img']; 
 spm_write_vol(results_hdr,SL);
 
