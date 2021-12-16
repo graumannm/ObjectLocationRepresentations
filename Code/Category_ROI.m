@@ -1,5 +1,5 @@
 function [result] = Category_ROI(sbj)
-% Analysis corresponding to Fig. 4b.
+% Analysis corresponding to Fig. 6b.
 % Classification of object category across locations in each background
 % condition separately and in each ROI.
 
@@ -7,6 +7,10 @@ function [result] = Category_ROI(sbj)
 
 % Input:
 %       sbj = subject number, integer
+
+% Output:
+%       result = classification accuracies with dimensions ROIs x
+%       backgrounds, matrix
 
 % prepare paths & filenames
 addpath('Code/HelperFunctions');
@@ -21,7 +25,7 @@ runs         = 10; % number of fMRI runs
 bg           = 3;  % number of background conditions
 locations    = 4;
 categories   = 4;
-bins         = 2;
+bins         = 2; % number of runs to average into single pseudo-trial
 result       = nan(length(ROIs),bg); % pre-allocate results matrix
 chance_level = 50;
 
