@@ -28,7 +28,7 @@ if task==1 % location
     % define upper and lower y-axis bounds for stimulus onset plotting
     ylimlow = -10;
     ylimup  = 40;
-    name = 'Location';
+    name    = 'Location';
     
 else % category
     

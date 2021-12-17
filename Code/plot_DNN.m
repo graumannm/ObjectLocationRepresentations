@@ -77,7 +77,7 @@ L=legend({'No Background','Low Clutter','High Clutter'});
 set(L,'box','off');
 
 % other plot properties
-ylabel('Classification Accuracy (%)');
+ylabel('Classification Accuracy (%) - chance level (%)');
 xlabel([DNN ' layer'])
 set(gca,'linewidth',3);
 set(gca,'xtick',[xb([2,5,8,11])]); % where to put labels

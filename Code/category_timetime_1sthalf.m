@@ -42,8 +42,7 @@ for iperm = 1:permutations
     clear iClutter
     
     % now perform pairwise cross-decoding of all location pairs, across
-    %  categories, backgrounds and time points
-    
+    % categories, backgrounds and time points
     for locationA = 1:locations
         for locationB = 1:locations
             
