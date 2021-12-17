@@ -27,7 +27,6 @@ set(0,'DefaultTextFontname', 'Helvetica')
 set(0,'DefaultAxesFontSize',25)
 set(0,'DefaultTextFontSize',25)
 set(gcf,'Color','w')
-barcolor = nan; % initialize
 hold on
 
 % colors
@@ -72,16 +71,12 @@ low = [2:3:length(m)-1];
 for ibar=1:size(myData,2)
     
     h = bar(xb(ibar),m(ibar));
-    clear barcolor
     if ismember(ibar,no) % no clutter
         set(h,'facecolor',c1);
-        barcolor = c1;
     elseif ismember(ibar,low) % low clutter
         set(h,'facecolor',c2);
-        barcolor = c2;
     else
         set(h,'facecolor',c3); % high clutter
-        barcolor = c3;
     end
     set(h,'linewidth',3);
     
