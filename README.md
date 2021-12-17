@@ -4,7 +4,7 @@
 
 This repository contains the analysis code that goes with the manuscript "The spatiotemporal neural dynamics of object location representations in the human brain". 
 
-All analyses were conducted using Matlab 2018b and were also tested on Matlab2016a, Matlab2017b and Matlab2020b. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Big Sur version 11.1, Windows 10.
+All analyses were conducted using Matlab R2018b and were also tested on Matlab2016a, Matlab2017b, Matlab2020b and MAtlab R2021a. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Catalina version 10.15.7, MacOS Big Sur version 11.1 and Windows 10.
 
 The fMRI, EEG and DNN data as well as the experimental stimuli can be downloaded [here](https://osf.io/7zswn/?view_only=db183dde8f4b406aaba5dfc0dd0ae67d).
 
