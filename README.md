@@ -4,7 +4,7 @@
 
 This repository contains the analysis code that goes with the manuscript ["The spatiotemporal neural dynamics of object location representations in the human brain"](https://www.nature.com/articles/s41562-022-01302-0.pdf). 
 
-All analyses were conducted using Matlab R2018b and were also tested on Matlab2016a, Matlab2017b, Matlab2020b and MAtlab R2021a. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Catalina version 10.15.7, MacOS Big Sur version 11.1 and Windows 10.
+All analyses were conducted using Matlab R2018b and were also tested on Matlab2016a, Matlab2017b, Matlab2020b and Matlab R2021a. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Catalina version 10.15.7, MacOS Big Sur version 11.1 and Windows 10.
 
 The fMRI, EEG and DNN data as well as the experimental stimuli can be downloaded [here](https://osf.io/7zswn/?view_only=db183dde8f4b406aaba5dfc0dd0ae67d).
 
@@ -12,7 +12,7 @@ The fMRI, EEG and DNN data as well as the experimental stimuli can be downloaded
 ## Requirements
 
 - Matlab software
-- The code depends on functions from the libsvm-3.11 toolbox, but these are provided in the folder /Code/LibsvmFunctions, thus no installation of the toolbox is required.
+- The code depends on functions from the [libsvm-3.11 toolbox](https://www.csie.ntu.edu.tw/~cjlin/libsvm/), but these are provided in the folder /Code/LibsvmFunctions, thus no installation of the toolbox is required.
 - the searchlight analysis requires some functions from the SPM toolbox which can be downloaded [here](https://www.fil.ion.ucl.ac.uk/spm/software/spm12/)
 
 ## Start analysis and plot result
