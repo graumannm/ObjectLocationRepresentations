@@ -51,10 +51,3 @@ Both fast and original version downsample the time points to a 10 ms resolution 
 
 Please be aware that results can differ slightly from time to time because of the random assignment of trials to training and testing bins.
 
-The following single subject or group averaged result figures in this demo correspond to the following group-averaged figures in the manuscript: \
-Category_ROI.fig --> Fig. 6b \
-Category_Timecourse.fig --> Fig. 6c \
-Category_TimeGeneralization.fig --> Fig. 6g \
-Location_ROI.fig --> Fig. 3b \
-Location_Timecourse.fig --> Fig. 5a \
-Location_TimeGeneralization.fig --> Fig. 5e
