@@ -2,7 +2,7 @@
 
 
 
-This repository contains the analysis code that goes with the manuscript ["The spatiotemporal neural dynamics of object location representations in the human brain"](https://www.nature.com/articles/s41562-022-01302-0.pdf). 
+This repository contains the analysis code that goes with the publication ["The spatiotemporal neural dynamics of object location representations in the human brain"](https://www.nature.com/articles/s41562-022-01302-0.pdf). 
 
 All analyses were conducted using Matlab R2018b and were also tested on Matlab2016a, Matlab2017b, Matlab2020b and Matlab R2021a. Additionally, it has been tested on the following operating systems: CentOS Linux, MacOS Mojave version 10.14.6, MacOS Catalina version 10.15.7, MacOS Big Sur version 11.1 and Windows 10.
 
